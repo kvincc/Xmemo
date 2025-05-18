@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Twitter Notes on Hover",
+  "version": "1.0",
+  "description": "Add personal notes to Twitter user hover cards.",
+  "permissions": [
+    "storage" // 允许插件使用 chrome.storage API 存储笔记
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://*.x.com/*", "https://x.com/*"], // 在 Twitter 网站上运行
+      "js": ["content.js"], // 要注入的 JavaScript 文件
+      "css": ["styles.css"] // (可选) 注入自定义样式
+    }
+  ]
+}

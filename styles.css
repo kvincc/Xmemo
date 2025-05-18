@@ -1,0 +1,101 @@
+.twitter-note-container {
+  margin-top: 8px; /* 与上方元素保持间距 */
+  padding-top: 8px; /* 内部上边距 */
+  border-top: 1px solid rgb(239, 243, 244); /* 添加分割线，颜色可能需要根据 Twitter 主题调整 */
+}
+
+.twitter-note-textarea {
+  width: 95%; /* 宽度适应容器 */
+  padding: 6px 8px;
+  margin-bottom: 4px;
+  border: 1px solid rgb(207, 217, 222);
+  border-radius: 4px;
+  font-size: 13px; /* 调整字体大小 */
+  resize: vertical; /* 允许垂直调整大小 */
+  box-sizing: border-box; /* 边框和内边距包含在宽度内 */
+}
+
+.twitter-note-save-button {
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 9999px; /* 圆角按钮 */
+  border: 1px solid rgb(207, 217, 222);
+  background-color: rgb(15, 20, 25); /* 按钮背景色，可能需调整 */
+  color: white; /* 按钮文字颜色 */
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.twitter-note-save-button:hover {
+  background-color: rgb(39, 44, 48); /* 鼠标悬停时的背景色 */
+}
+
+/* Styles for the independent Notes Popover */
+.x-note-popover {
+  position: absolute; /* Crucial for positioning */
+  z-index: 10000; /* High value to appear on top */
+  background-color: white;
+  border: 1px solid rgb(207, 217, 222); /* Match Twitter's border color */
+  border-radius: 8px; /* Rounded corners */
+  padding: 12px 15px; /* More padding */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Softer shadow */
+  min-width: 250px; /* Minimum width */
+  max-width: 350px; /* Maximum width */
+  height: auto; /* 添加这行，让高度自适应内容 */
+  box-sizing: border-box;
+  /* Add transition for smoother appearance/disappearance if desired */
+  /* opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.1s ease-out, transform 0.1s ease-out; */
+}
+
+/* Optional: Style for when it becomes visible */
+/* .x-note-popover.visible {
+    opacity: 1;
+    transform: scale(1);
+} */
+
+
+/* Style the elements inside the popover */
+.x-note-popover .x-note-textarea { /* Use descendant selector */
+  width: 100%; /* Full width within popover */
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid rgb(207, 217, 222);
+  border-radius: 4px;
+  font-size: 14px; /* Slightly larger font */
+  resize: vertical;
+  box-sizing: border-box;
+  min-height: 60px; /* Minimum height */
+  height: auto; /* 添加这行，让文本框高度自适应内容 */
+  overflow-y: hidden; /* 添加这行，防止出现滚动条 */
+}
+
+.x-note-popover .x-note-save-button { /* Use descendant selector */
+  display: block; /* Make button block level */
+  width: auto; /* Adjust width automatically */
+  padding: 6px 16px; /* More padding */
+  margin-left: auto; /* Push to the right */
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 9999px;
+  border: none; /* Remove border */
+  background-color: rgb(29, 155, 240); /* Twitter blue */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.x-note-popover .x-note-save-button:hover {
+  background-color: rgb(26, 140, 216); /* Darker blue on hover */
+}
+
+.x-note-popover .x-note-save-button:disabled {
+    background-color: rgb(15, 86, 136); /* Disabled color */
+    cursor: default;
+}
+
+
+/* You might still need the old styles if you reuse class names,
+   but these specifically target elements within the new popover */
