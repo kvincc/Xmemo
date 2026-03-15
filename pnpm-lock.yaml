@@ -1,0 +1,24 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      ccusage:
+        specifier: ^15.6.0
+        version: 15.6.0
+
+packages:
+
+  ccusage@15.6.0:
+    resolution: {integrity: sha512-31NgPhrGc54GeqiRjTgzSkoPr+7tnb7QTORYgIOk/gFTSwUMnbsYyIuZsOnnXB1m5atSV6Q4Pgi/J99th/HLpA==}
+    engines: {node: '>=20.19.4'}
+    hasBin: true
+
+snapshots:
+
+  ccusage@15.6.0: {}

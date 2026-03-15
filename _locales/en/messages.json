@@ -1,0 +1,366 @@
+{
+  "ext_name": {
+    "message": "X-note"
+  },
+  "ext_description": {
+    "message": "Add personal notes to Twitter user hover cards with cloud sync."
+  },
+
+  "content_notes_placeholder": {
+    "message": "notes about $1...",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "content_save_mac": {
+    "message": "Save (\u2318\u21B5)"
+  },
+  "content_save_other": {
+    "message": "Save (Ctrl+\u21B5)"
+  },
+  "content_add_tag_placeholder": {
+    "message": "Add tag..."
+  },
+  "content_saved": {
+    "message": "Saved!"
+  },
+  "content_save_error_check_storage": {
+    "message": "Save failed: unable to check storage space"
+  },
+  "content_storage_almost_full": {
+    "message": "Storage almost full! Please delete some notes in the management page."
+  },
+  "content_save_error_read_tags": {
+    "message": "Save failed: unable to read tag data"
+  },
+  "content_save_error_prefix": {
+    "message": "Save failed: $1",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "content_save_error_refresh": {
+    "message": "Save failed: please refresh the page and try again"
+  },
+  "content_note_too_long": {
+    "message": "Note is too long, please shorten and try again."
+  },
+  "content_storage_full": {
+    "message": "Not enough storage space. Please delete some old notes."
+  },
+
+  "sync_synced": {
+    "message": "\u2601 synced"
+  },
+  "sync_syncing": {
+    "message": "\u2601 syncing..."
+  },
+  "sync_pending": {
+    "message": "\u2601 pending"
+  },
+  "sync_offline": {
+    "message": "\u2601 offline"
+  },
+  "sync_error": {
+    "message": "\u2601 error"
+  },
+
+  "options_title": {
+    "message": "X-note Notes Management"
+  },
+  "options_google_login": {
+    "message": "Sign in with Google"
+  },
+  "options_sync_btn": {
+    "message": "Sync"
+  },
+  "options_logout_btn": {
+    "message": "Log out"
+  },
+  "options_sync_btn_title": {
+    "message": "Sync now"
+  },
+  "options_logout_btn_title": {
+    "message": "Log out"
+  },
+  "options_theme_toggle_title": {
+    "message": "Toggle theme"
+  },
+  "options_more_actions_title": {
+    "message": "More actions"
+  },
+  "options_export_btn": {
+    "message": "Export all notes"
+  },
+  "options_import_btn": {
+    "message": "Import notes"
+  },
+  "options_search_placeholder": {
+    "message": "Search username or note content..."
+  },
+  "options_tag_filter_title": {
+    "message": "Tag filter"
+  },
+  "options_expand": {
+    "message": "Expand"
+  },
+  "options_collapse": {
+    "message": "Collapse"
+  },
+  "options_active_filters_label": {
+    "message": "Selected:"
+  },
+  "options_clear_filters": {
+    "message": "Clear filters"
+  },
+  "options_tag_search_placeholder": {
+    "message": "Search tags..."
+  },
+  "options_tag_search_hint": {
+    "message": "Press Enter to add filter"
+  },
+  "options_popular_tags_label": {
+    "message": "Popular tags:"
+  },
+  "options_note_count": {
+    "message": "$1 notes",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_note_count_filtered": {
+    "message": "$1 / $2 notes",
+    "placeholders": {
+      "1": { "content": "$1" },
+      "2": { "content": "$2" }
+    }
+  },
+  "options_tag_count": {
+    "message": "$1 tags",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_storage_label": {
+    "message": "Storage:"
+  },
+  "options_selected_count": {
+    "message": "$1 users selected",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_clear_selection": {
+    "message": "Clear selection"
+  },
+  "options_th_username": {
+    "message": "Username"
+  },
+  "options_th_tags": {
+    "message": "Tags"
+  },
+  "options_th_note_content": {
+    "message": "Note content"
+  },
+  "options_th_actions": {
+    "message": "Actions"
+  },
+  "options_empty_state": {
+    "message": "No notes yet. Notes you add to users on X (Twitter) will appear here."
+  },
+  "options_confirm_delete_title": {
+    "message": "Confirm Delete"
+  },
+  "options_confirm_delete_message": {
+    "message": "Are you sure you want to delete this note? This action cannot be undone."
+  },
+  "common_cancel": {
+    "message": "Cancel"
+  },
+  "common_delete": {
+    "message": "Delete"
+  },
+  "common_save": {
+    "message": "Save"
+  },
+  "common_edit": {
+    "message": "Edit"
+  },
+  "common_add": {
+    "message": "Add"
+  },
+  "options_tag_edit_title": {
+    "message": "Edit Tags"
+  },
+  "options_tag_edit_for_user": {
+    "message": "Edit tags for $1",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_tag_input_label": {
+    "message": "Tags (comma separated):"
+  },
+  "options_tag_input_placeholder": {
+    "message": "e.g.: important, work"
+  },
+  "options_tag_input_hint": {
+    "message": "Supports comma separation, press Enter to save quickly"
+  },
+  "options_current_tags_label": {
+    "message": "Current tags:"
+  },
+  "options_no_tags": {
+    "message": "No tags"
+  },
+  "options_migration_title": {
+    "message": "Data Migration"
+  },
+  "options_migration_message": {
+    "message": "Both local and cloud data found. Please choose how to proceed:"
+  },
+  "options_migration_merge": {
+    "message": "Merge data (recommended)"
+  },
+  "options_migration_cloud": {
+    "message": "Use cloud data"
+  },
+  "options_migration_local": {
+    "message": "Use local data"
+  },
+  "options_untagged_count": {
+    "message": "Untagged ($1)",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_untagged": {
+    "message": "Untagged"
+  },
+  "options_tag_save_failed": {
+    "message": "Failed to save tags"
+  },
+  "options_tag_save_success": {
+    "message": "Tags saved"
+  },
+  "options_duplicate_tags_removed": {
+    "message": "Duplicate tags removed automatically"
+  },
+  "options_no_notes_to_export": {
+    "message": "No notes to export"
+  },
+  "options_export_success": {
+    "message": "Notes and tags exported"
+  },
+  "options_import_no_valid_data": {
+    "message": "No valid note data in import file"
+  },
+  "options_import_success": {
+    "message": "Successfully imported $1 notes",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_import_parse_success": {
+    "message": "Parsed $1 notes (save requires Chrome extension environment)",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_import_json_error": {
+    "message": "Import failed: invalid JSON format"
+  },
+  "options_import_failed": {
+    "message": "Import failed: $1",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_file_read_error": {
+    "message": "Failed to read file"
+  },
+  "options_save_failed": {
+    "message": "Save failed: $1",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_note_updated": {
+    "message": "Note updated"
+  },
+  "options_delete_failed": {
+    "message": "Delete failed: $1",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_note_deleted": {
+    "message": "Note deleted"
+  },
+  "options_logging_in": {
+    "message": "Signing in..."
+  },
+  "options_login_success": {
+    "message": "Signed in successfully"
+  },
+  "options_sync_failed": {
+    "message": "Sync failed: $1",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_sync_complete": {
+    "message": "Sync complete"
+  },
+  "options_logged_out": {
+    "message": "Logged out"
+  },
+  "options_migrated_to_cloud": {
+    "message": "Local data synced to cloud"
+  },
+  "options_sync_status_synced": {
+    "message": "Synced \u2713"
+  },
+  "options_sync_status_syncing": {
+    "message": "Syncing..."
+  },
+  "options_sync_status_pending": {
+    "message": "Pending"
+  },
+  "options_sync_status_offline": {
+    "message": "Offline"
+  },
+  "options_sync_status_error": {
+    "message": "Sync failed"
+  },
+
+  "auth_login_cancelled": {
+    "message": "Google sign-in was cancelled or failed"
+  },
+  "auth_login_failed": {
+    "message": "Sign-in failed"
+  },
+
+  "options_language_label": {
+    "message": "Language"
+  },
+  "options_language_auto": {
+    "message": "Auto (Browser)"
+  },
+
+  "toast_update_title": {
+    "message": "New version available!"
+  },
+  "toast_update_message": {
+    "message": "X-note $1 is ready. Restart browser to update.",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "toast_update_action": {
+    "message": "Restart now"
+  },
+  "toast_dismiss": {
+    "message": "Dismiss"
+  }
+}

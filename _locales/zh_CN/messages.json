@@ -1,0 +1,366 @@
+{
+  "ext_name": {
+    "message": "X-note"
+  },
+  "ext_description": {
+    "message": "为 Twitter 用户悬停卡片添加个人备注，支持云同步。"
+  },
+
+  "content_notes_placeholder": {
+    "message": "关于 $1 的备注...",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "content_save_mac": {
+    "message": "保存 (\u2318\u21B5)"
+  },
+  "content_save_other": {
+    "message": "保存 (Ctrl+\u21B5)"
+  },
+  "content_add_tag_placeholder": {
+    "message": "添加标签..."
+  },
+  "content_saved": {
+    "message": "已保存！"
+  },
+  "content_save_error_check_storage": {
+    "message": "保存失败：无法检查存储空间"
+  },
+  "content_storage_almost_full": {
+    "message": "存储空间即将用尽！请在管理页面删除一些笔记。"
+  },
+  "content_save_error_read_tags": {
+    "message": "保存失败：无法读取标签数据"
+  },
+  "content_save_error_prefix": {
+    "message": "保存失败：$1",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "content_save_error_refresh": {
+    "message": "保存失败：请刷新页面后重试"
+  },
+  "content_note_too_long": {
+    "message": "笔记内容过长，请缩短后重试。"
+  },
+  "content_storage_full": {
+    "message": "存储空间不足，无法保存。请删除一些旧笔记。"
+  },
+
+  "sync_synced": {
+    "message": "\u2601 已同步"
+  },
+  "sync_syncing": {
+    "message": "\u2601 同步中..."
+  },
+  "sync_pending": {
+    "message": "\u2601 待同步"
+  },
+  "sync_offline": {
+    "message": "\u2601 离线"
+  },
+  "sync_error": {
+    "message": "\u2601 错误"
+  },
+
+  "options_title": {
+    "message": "X-note 笔记管理"
+  },
+  "options_google_login": {
+    "message": "使用 Google 登录"
+  },
+  "options_sync_btn": {
+    "message": "同步"
+  },
+  "options_logout_btn": {
+    "message": "登出"
+  },
+  "options_sync_btn_title": {
+    "message": "立即同步"
+  },
+  "options_logout_btn_title": {
+    "message": "登出"
+  },
+  "options_theme_toggle_title": {
+    "message": "切换主题"
+  },
+  "options_more_actions_title": {
+    "message": "更多操作"
+  },
+  "options_export_btn": {
+    "message": "导出所有笔记"
+  },
+  "options_import_btn": {
+    "message": "导入笔记"
+  },
+  "options_search_placeholder": {
+    "message": "搜索用户名或笔记内容..."
+  },
+  "options_tag_filter_title": {
+    "message": "标签筛选"
+  },
+  "options_expand": {
+    "message": "展开"
+  },
+  "options_collapse": {
+    "message": "收起"
+  },
+  "options_active_filters_label": {
+    "message": "已选择："
+  },
+  "options_clear_filters": {
+    "message": "清除筛选"
+  },
+  "options_tag_search_placeholder": {
+    "message": "输入标签名搜索..."
+  },
+  "options_tag_search_hint": {
+    "message": "按 Enter 键添加筛选"
+  },
+  "options_popular_tags_label": {
+    "message": "热门标签："
+  },
+  "options_note_count": {
+    "message": "$1 条笔记",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_note_count_filtered": {
+    "message": "$1 / $2 条笔记",
+    "placeholders": {
+      "1": { "content": "$1" },
+      "2": { "content": "$2" }
+    }
+  },
+  "options_tag_count": {
+    "message": "$1 个标签",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_storage_label": {
+    "message": "存储空间："
+  },
+  "options_selected_count": {
+    "message": "已选择 $1 个用户",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_clear_selection": {
+    "message": "清除选择"
+  },
+  "options_th_username": {
+    "message": "用户名"
+  },
+  "options_th_tags": {
+    "message": "标签"
+  },
+  "options_th_note_content": {
+    "message": "笔记内容"
+  },
+  "options_th_actions": {
+    "message": "操作"
+  },
+  "options_empty_state": {
+    "message": "暂无笔记内容。当你在 X (Twitter) 上为用户添加笔记后，它们会显示在这里。"
+  },
+  "options_confirm_delete_title": {
+    "message": "确认删除"
+  },
+  "options_confirm_delete_message": {
+    "message": "您确定要删除这条笔记吗？此操作无法撤销。"
+  },
+  "common_cancel": {
+    "message": "取消"
+  },
+  "common_delete": {
+    "message": "删除"
+  },
+  "common_save": {
+    "message": "保存"
+  },
+  "common_edit": {
+    "message": "编辑"
+  },
+  "common_add": {
+    "message": "添加"
+  },
+  "options_tag_edit_title": {
+    "message": "编辑标签"
+  },
+  "options_tag_edit_for_user": {
+    "message": "为 $1 编辑标签",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_tag_input_label": {
+    "message": "标签 (用逗号分隔):"
+  },
+  "options_tag_input_placeholder": {
+    "message": "例如: 重要,工作 或 重要，工作"
+  },
+  "options_tag_input_hint": {
+    "message": "支持中英文逗号分隔，按 Enter 键快速保存"
+  },
+  "options_current_tags_label": {
+    "message": "当前标签："
+  },
+  "options_no_tags": {
+    "message": "暂无标签"
+  },
+  "options_migration_title": {
+    "message": "数据迁移"
+  },
+  "options_migration_message": {
+    "message": "检测到本地和云端都有笔记数据，请选择处理方式："
+  },
+  "options_migration_merge": {
+    "message": "合并数据（推荐）"
+  },
+  "options_migration_cloud": {
+    "message": "使用云端数据覆盖"
+  },
+  "options_migration_local": {
+    "message": "使用本地数据覆盖"
+  },
+  "options_untagged_count": {
+    "message": "未标记 ($1)",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_untagged": {
+    "message": "未标记"
+  },
+  "options_tag_save_failed": {
+    "message": "标签保存失败"
+  },
+  "options_tag_save_success": {
+    "message": "标签保存成功"
+  },
+  "options_duplicate_tags_removed": {
+    "message": "已自动去除重复标签"
+  },
+  "options_no_notes_to_export": {
+    "message": "没有笔记可导出"
+  },
+  "options_export_success": {
+    "message": "笔记和标签已导出"
+  },
+  "options_import_no_valid_data": {
+    "message": "导入文件中没有有效的笔记数据"
+  },
+  "options_import_success": {
+    "message": "成功导入 $1 条笔记",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_import_parse_success": {
+    "message": "解析成功：找到 $1 条笔记（需要在Chrome扩展环境中才能保存）",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_import_json_error": {
+    "message": "导入失败: JSON文件格式错误"
+  },
+  "options_import_failed": {
+    "message": "导入失败: $1",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_file_read_error": {
+    "message": "读取文件失败"
+  },
+  "options_save_failed": {
+    "message": "保存失败: $1",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_note_updated": {
+    "message": "笔记已更新"
+  },
+  "options_delete_failed": {
+    "message": "删除失败: $1",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_note_deleted": {
+    "message": "笔记已删除"
+  },
+  "options_logging_in": {
+    "message": "登录中..."
+  },
+  "options_login_success": {
+    "message": "登录成功"
+  },
+  "options_sync_failed": {
+    "message": "同步失败: $1",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_sync_complete": {
+    "message": "同步完成"
+  },
+  "options_logged_out": {
+    "message": "已登出"
+  },
+  "options_migrated_to_cloud": {
+    "message": "已将本地数据同步到云端"
+  },
+  "options_sync_status_synced": {
+    "message": "已同步 \u2713"
+  },
+  "options_sync_status_syncing": {
+    "message": "同步中..."
+  },
+  "options_sync_status_pending": {
+    "message": "待同步"
+  },
+  "options_sync_status_offline": {
+    "message": "离线"
+  },
+  "options_sync_status_error": {
+    "message": "同步失败"
+  },
+
+  "auth_login_cancelled": {
+    "message": "Google 登录被取消或失败"
+  },
+  "auth_login_failed": {
+    "message": "登录失败"
+  },
+
+  "options_language_label": {
+    "message": "语言"
+  },
+  "options_language_auto": {
+    "message": "自动（浏览器）"
+  },
+
+  "toast_update_title": {
+    "message": "新版本已就绪！"
+  },
+  "toast_update_message": {
+    "message": "X-note $1 已就绪，重启浏览器即可更新。",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "toast_update_action": {
+    "message": "立即重启"
+  },
+  "toast_dismiss": {
+    "message": "忽略"
+  }
+}

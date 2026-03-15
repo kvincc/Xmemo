@@ -1,0 +1,13 @@
+name = "xnote-sync"
+main = "src/index.js"
+compatibility_date = "2024-12-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "xnote-db"
+database_id = "a9a83b0a-7a8e-48f3-8220-2f768c72fdd0"
+
+[vars]
+CORS_ORIGIN = "chrome-extension://*"
+JWT_EXPIRY_DAYS = "7"
+JWT_REFRESH_GRACE_DAYS = "7"

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="options_title">X-note Notes Management</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 data-i18n="options_title">X-note Notes Management</h1>
+            <div class="actions">
+                <!-- Cloud sync UI -->
+                <div id="syncSection" class="sync-section">
+                    <!-- Logged out state -->
+                    <div id="syncLoggedOut" class="sync-logged-out">
+                        <button id="googleLoginBtn" class="google-login-btn">
+                            <svg width="16" height="16" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+                            <span data-i18n="options_google_login">Sign in with Google</span>
+                        </button>
+                    </div>
+                    <!-- Logged in state -->
+                    <div id="syncLoggedIn" class="sync-logged-in" style="display:none;">
+                        <img id="syncUserAvatar" class="sync-avatar" src="" alt="">
+                        <span id="syncUserEmail" class="sync-email"></span>
+                        <span id="syncStatus" class="sync-status"></span>
+                        <button id="syncNowBtn" class="sync-now-btn" data-i18n="options_sync_btn" data-i18n-title="options_sync_btn_title">Sync</button>
+                        <button id="logoutBtn" class="logout-btn" data-i18n="options_logout_btn" data-i18n-title="options_logout_btn_title">Log out</button>
+                    </div>
+                </div>
+                <select id="languageSelect" class="language-select" data-i18n-title="options_language_label">
+                    <option value="auto" data-i18n="options_language_auto">Auto (Browser)</option>
+                    <option value="en">English</option>
+                    <option value="zh_CN">中文 (简体)</option>
+                </select>
+                <button id="themeToggle" class="theme-toggle-btn" data-i18n-title="options_theme_toggle_title">
+                    <svg class="theme-icon sun-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    <svg class="theme-icon moon-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                </button>
+                <div class="hamburger-wrapper">
+                    <button id="hamburgerBtn" class="hamburger-btn" data-i18n-title="options_more_actions_title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    </button>
+                    <div id="hamburgerMenu" class="hamburger-menu">
+                        <button id="exportBtn" class="hamburger-menu-item" data-i18n="options_export_btn">Export all notes</button>
+                        <button id="importBtn" class="hamburger-menu-item" data-i18n="options_import_btn">Import notes</button>
+                    </div>
+                    <input type="file" id="importFile" accept=".json" style="display: none;">
+                </div>
+            </div>
+        </header>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" data-i18n-placeholder="options_search_placeholder" placeholder="Search username or note content...">
+            <div class="filter-section">
+                <div class="filter-header">
+                    <span class="filter-title" data-i18n="options_tag_filter_title">Tag filter</span>
+                    <button id="toggleTagFilter" class="toggle-btn" data-i18n="options_expand">Expand</button>
+                </div>
+                <div id="tagFilterPanel" class="tag-filter-panel collapsed">
+                    <div class="active-filters">
+                        <span class="active-filters-label" data-i18n="options_active_filters_label">Selected:</span>
+                        <div id="activeTagFilters" class="active-tag-list"></div>
+                        <button id="clearTagFilters" class="clear-filters-btn" style="display: none;" data-i18n="options_clear_filters">Clear filters</button>
+                    </div>
+                    <div class="tag-input-section">
+                        <input type="text" id="tagSearchInput" data-i18n-placeholder="options_tag_search_placeholder" placeholder="Search tags..." class="tag-search-input">
+                        <small style="color: #536471; font-size: 11px; margin-top: 2px; display: block;" data-i18n="options_tag_search_hint">Press Enter to add filter</small>
+                        <div id="tagSuggestions" class="tag-suggestions"></div>
+                    </div>
+                    <div class="popular-tags">
+                        <span class="popular-tags-label" data-i18n="options_popular_tags_label">Popular tags:</span>
+                        <div id="popularTagsList" class="popular-tags-list"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="stats">
+                <span id="noteCount">0</span>
+                <span id="tagCount">0</span>
+                <span class="storage-info" data-i18n="options_storage_label">Storage:</span>
+                <span class="storage-info"><span id="storageUsage">0 KB</span> / 100 KB</span>
+            </div>
+        </div>
+
+        <!-- Selection Info Bar -->
+        <div id="selectionInfoBar" class="selection-info-bar" style="display: none;">
+            <div class="selection-info">
+                <span id="selectedCount">0</span>
+                <div class="selection-actions">
+                    <button id="clearSelection" class="clear-selection-btn" data-i18n="options_clear_selection">Clear selection</button>
+                    <button id="catchUpBtn" class="catch-up-btn" title="Creates a personalized feed of recent posts from your selected users in a new X tab. Great way to catch up quickly!">Catch up on X</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="notesTable">
+                <thead>
+                    <tr>
+                        <th class="checkbox-column">
+                            <input type="checkbox" id="selectAllCheckbox" class="select-all-checkbox">
+                        </th>
+                        <th data-i18n="options_th_username">Username</th>
+                        <th data-i18n="options_th_tags">Tags</th>
+                        <th data-i18n="options_th_note_content">Note content</th>
+                        <th data-i18n="options_th_actions">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="notesTableBody">
+                    <!-- Notes will be populated here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+            <p data-i18n="options_empty_state">No notes yet. Notes you add to users on X (Twitter) will appear here.</p>
+        </div>
+    </div>
+
+    <!-- Status message for operations -->
+    <div id="statusMessage" class="status-message"></div>
+
+    <!-- Confirmation dialog -->
+    <div id="confirmationDialog" class="dialog-overlay">
+        <div class="dialog-content">
+            <h3 data-i18n="options_confirm_delete_title">Confirm Delete</h3>
+            <p data-i18n="options_confirm_delete_message">Are you sure you want to delete this note? This action cannot be undone.</p>
+            <div class="dialog-buttons">
+                <button id="cancelDelete" class="dialog-btn cancel" data-i18n="common_cancel">Cancel</button>
+                <button id="confirmDelete" class="dialog-btn confirm" data-i18n="common_delete">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tag Edit Dialog -->
+    <div id="tagEditDialog" class="dialog-overlay">
+        <div class="dialog-content">
+            <h3 data-i18n="options_tag_edit_title">Edit Tags</h3>
+            <p class="dialog-username"><span id="editTagUsernameLabel" data-i18n="options_tag_edit_for_user"></span> <span id="editTagUsername"></span></p>
+            <div class="tag-edit-section">
+                <label for="tagInput" data-i18n="options_tag_input_label">Tags (comma separated):</label>
+                <input type="text" id="tagInput" class="tag-input" data-i18n-placeholder="options_tag_input_placeholder" placeholder="e.g.: important, work">
+                <small style="color: #536471; font-size: 12px; margin-top: 4px; display: block;" data-i18n="options_tag_input_hint">Supports comma separation, press Enter to save quickly</small>
+                <div class="tag-suggestions-container">
+                    <div id="tagInputSuggestions" class="tag-suggestions"></div>
+                </div>
+                <div class="current-tags">
+                    <span class="current-tags-label" data-i18n="options_current_tags_label">Current tags:</span>
+                    <div id="currentTagsDisplay" class="current-tags-display"></div>
+                </div>
+            </div>
+            <div class="dialog-buttons">
+                <button id="cancelTagEdit" class="dialog-btn cancel" data-i18n="common_cancel">Cancel</button>
+                <button id="saveTagEdit" class="dialog-btn confirm" data-i18n="common_save">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Migration dialog -->
+    <div id="migrationDialog" class="dialog-overlay">
+        <div class="dialog-content">
+            <h3 data-i18n="options_migration_title">Data Migration</h3>
+            <p id="migrationMessage" data-i18n="options_migration_message">Both local and cloud data found. Please choose how to proceed:</p>
+            <div class="dialog-buttons">
+                <button id="migrationMerge" class="dialog-btn confirm" data-i18n="options_migration_merge">Merge data (recommended)</button>
+                <button id="migrationCloudOverwrite" class="dialog-btn cancel" data-i18n="options_migration_cloud">Use cloud data</button>
+                <button id="migrationLocalOverwrite" class="dialog-btn cancel" data-i18n="options_migration_local">Use local data</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="lib/i18n.js"></script>
+    <script src="lib/constants.js"></script>
+    <script src="lib/storage-adapter.js"></script>
+    <script src="lib/auth.js"></script>
+    <script src="lib/sync-manager.js"></script>
+    <script src="options.js"></script>
+</body>
+</html>

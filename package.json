@@ -1,0 +1,10 @@
+{
+	"scripts": {
+		"lint": "npx --yes web-ext lint --source-dir .",
+		"zip": "web-ext build --source-dir . --artifacts-dir ./dist --ignore-files 'worker/*' 'node_modules/*' '.claude/*' 'dist/*' 'CLAUDE.md' 'opportunity.md' 'note.log' 'HoverCard_demo.html' 'X_DOM.html' 'X_hoverCard_dom.html' 'package.json' 'pnpm-lock.yaml' '.DS_Store' '.gitignore' '*.md' '20*'",
+		"deploy:worker": "cd worker && wrangler deploy"
+	},
+	"dependencies": {
+		"ccusage": "^15.6.0"
+	}
+}

@@ -1,0 +1,388 @@
+/* Styles for the Notes Popover */
+.x-note-popover {
+  /* Theme variables - Light (default) */
+  --xn-bg: #ffffff;
+  --xn-border: rgb(207, 217, 222);
+  --xn-text: #0f1419;
+  --xn-text-secondary: #536471;
+  --xn-input-bg: #ffffff;
+  --xn-input-border: rgb(207, 217, 222);
+  --xn-shadow: rgba(0, 0, 0, 0.15);
+  --xn-btn-bg: rgb(29, 155, 240);
+  --xn-btn-hover: rgb(26, 140, 216);
+  --xn-btn-disabled: rgb(15, 86, 136);
+  --xn-msg-error-bg: #fef2f2;
+  --xn-msg-error-text: #dc2626;
+  --xn-msg-error-border: #fecaca;
+  --xn-msg-info-bg: #eff6ff;
+  --xn-msg-info-text: #2563eb;
+  --xn-msg-info-border: #bfdbfe;
+
+  position: fixed;
+  z-index: 10000;
+  background-color: var(--xn-bg);
+  border: 1px solid var(--xn-border);
+  border-radius: 8px;
+  padding: 12px 15px;
+  box-shadow: 0 4px 12px var(--xn-shadow);
+  color: var(--xn-text);
+  min-width: 250px;
+  max-width: 350px;
+  height: auto;
+  box-sizing: border-box;
+}
+
+/* Dim theme (X "Dim" mode - #15202B background) */
+.x-note-popover[data-theme="dim"] {
+  --xn-bg: #15202B;
+  --xn-border: #38444d;
+  --xn-text: #f7f9fa;
+  --xn-text-secondary: #8b98a5;
+  --xn-input-bg: #1e2d3d;
+  --xn-input-border: #38444d;
+  --xn-shadow: rgba(0, 0, 0, 0.4);
+  --xn-msg-error-bg: #3b1a1a;
+  --xn-msg-error-text: #fca5a5;
+  --xn-msg-error-border: #5b2020;
+  --xn-msg-info-bg: #1a2b3b;
+  --xn-msg-info-text: #93c5fd;
+  --xn-msg-info-border: #1e3a5f;
+}
+
+/* Dark theme (X "Lights out" mode - #000 background) */
+.x-note-popover[data-theme="dark"] {
+  --xn-bg: #16181c;
+  --xn-border: #2f3336;
+  --xn-text: #e7e9ea;
+  --xn-text-secondary: #71767b;
+  --xn-input-bg: #1a1a1a;
+  --xn-input-border: #2f3336;
+  --xn-shadow: rgba(255, 255, 255, 0.05);
+  --xn-msg-error-bg: #2d1515;
+  --xn-msg-error-text: #fca5a5;
+  --xn-msg-error-border: #4a1c1c;
+  --xn-msg-info-bg: #151d2d;
+  --xn-msg-info-text: #93c5fd;
+  --xn-msg-info-border: #1c2d4a;
+}
+
+/* Popover textarea */
+.x-note-popover .x-note-textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid var(--xn-input-border);
+  border-radius: 4px;
+  font-size: 14px;
+  resize: vertical;
+  box-sizing: border-box;
+  min-height: 60px;
+  height: auto;
+  overflow-y: hidden;
+  background-color: var(--xn-input-bg);
+  color: var(--xn-text);
+}
+
+.x-note-popover .x-note-textarea::placeholder {
+  color: var(--xn-text-secondary);
+}
+
+/* Save button */
+.x-note-popover .x-note-save-button {
+  display: block;
+  width: auto;
+  padding: 6px 16px;
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 9999px;
+  border: none;
+  background-color: var(--xn-btn-bg);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.x-note-popover .x-note-save-button:hover {
+  background-color: var(--xn-btn-hover);
+}
+
+.x-note-popover .x-note-save-button:disabled {
+  background-color: var(--xn-btn-disabled);
+  cursor: default;
+}
+
+/* Tag section in popover */
+.x-note-tag-section {
+  margin-bottom: 8px;
+}
+
+.x-note-tag-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 6px;
+  min-height: 0;
+}
+
+.x-note-tag-capsule {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  background-color: var(--xn-input-bg, #eff3f4);
+  color: var(--xn-text-secondary, #536471);
+  border: 1px solid var(--xn-input-border, #ddd);
+  border-radius: 12px;
+  font-size: 11px;
+  gap: 2px;
+}
+
+.x-note-tag-remove {
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  opacity: 0.6;
+}
+
+.x-note-tag-remove:hover {
+  opacity: 1;
+}
+
+.x-note-tag-input-row {
+  display: flex;
+  gap: 4px;
+  position: relative;
+}
+
+.x-note-tag-input {
+  flex: 1;
+  padding: 4px 8px;
+  border: 1px solid var(--xn-input-border, rgb(207, 217, 222));
+  border-radius: 4px;
+  font-size: 12px;
+  background-color: var(--xn-input-bg, white);
+  color: var(--xn-text, #0f1419);
+}
+
+.x-note-tag-input::placeholder {
+  color: var(--xn-text-secondary, #536471);
+}
+
+.x-note-add-tag-btn {
+  padding: 4px 10px;
+  border: none;
+  background-color: var(--xn-btn-bg, rgb(29, 155, 240));
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.x-note-tag-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 40px;
+  background-color: var(--xn-bg, white);
+  border: 1px solid var(--xn-border, #eff3f4);
+  border-radius: 4px;
+  max-height: 120px;
+  overflow-y: auto;
+  z-index: 10001;
+  display: none;
+}
+
+.x-note-tag-suggestion-item {
+  padding: 6px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--xn-text, #0f1419);
+}
+
+.x-note-tag-suggestion-item:hover {
+  background-color: var(--xn-input-bg, #f7f9fa);
+}
+
+/* Timeline note indicator */
+.x-note-indicator {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 4px;
+  font-size: 12px;
+  vertical-align: middle;
+  cursor: default;
+  opacity: 0.8;
+}
+
+/* Popover inline messages */
+.x-note-message {
+  font-size: 12px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.x-note-message-error {
+  background-color: var(--xn-msg-error-bg);
+  color: var(--xn-msg-error-text);
+  border: 1px solid var(--xn-msg-error-border);
+}
+
+.x-note-message-info {
+  background-color: var(--xn-msg-info-bg);
+  color: var(--xn-msg-info-text);
+  border: 1px solid var(--xn-msg-info-border);
+}
+
+/* Save row with sync indicator */
+.x-note-save-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Cloud sync status indicator */
+.x-note-sync-indicator {
+  font-size: 10px;
+  white-space: nowrap;
+  opacity: 0.8;
+}
+
+.x-note-sync-indicator.synced {
+  color: #00ba7c;
+}
+
+.x-note-sync-indicator.syncing {
+  color: var(--xn-btn-bg, #1d9bf0);
+}
+
+.x-note-sync-indicator.pending {
+  color: #ffad1f;
+}
+
+.x-note-sync-indicator.offline {
+  color: var(--xn-text-secondary, #71767b);
+}
+
+.x-note-sync-indicator.error {
+  color: #f4212e;
+}
+
+/* Version update toast */
+.x-note-update-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  z-index: 9999;
+  background-color: #ffffff;
+  border: 1px solid rgb(207, 217, 222);
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  min-width: 300px;
+  max-width: 420px;
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.x-note-update-toast.x-note-toast-show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.x-note-update-toast.x-note-toast-hide {
+  transform: translateX(-50%) translateY(100px);
+  opacity: 0;
+}
+
+.x-note-update-toast[data-theme="dim"] {
+  background-color: #15202B;
+  border-color: #38444d;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  color: #f7f9fa;
+}
+
+.x-note-update-toast[data-theme="dark"] {
+  background-color: #16181c;
+  border-color: #2f3336;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.05);
+  color: #e7e9ea;
+}
+
+.x-note-toast-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: inherit;
+}
+
+.x-note-toast-message {
+  font-size: 13px;
+  color: #536471;
+  margin-bottom: 12px;
+}
+
+.x-note-update-toast[data-theme="dim"] .x-note-toast-message {
+  color: #8b98a5;
+}
+
+.x-note-update-toast[data-theme="dark"] .x-note-toast-message {
+  color: #71767b;
+}
+
+.x-note-toast-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.x-note-toast-btn {
+  padding: 6px 16px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.x-note-toast-btn-primary {
+  background-color: rgb(29, 155, 240);
+  color: white;
+}
+
+.x-note-toast-btn-primary:hover {
+  background-color: rgb(26, 140, 216);
+}
+
+.x-note-toast-btn-secondary {
+  background-color: transparent;
+  color: #536471;
+  border: 1px solid rgb(207, 217, 222);
+}
+
+.x-note-toast-btn-secondary:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.x-note-update-toast[data-theme="dim"] .x-note-toast-btn-secondary {
+  color: #8b98a5;
+  border-color: #38444d;
+}
+
+.x-note-update-toast[data-theme="dim"] .x-note-toast-btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.x-note-update-toast[data-theme="dark"] .x-note-toast-btn-secondary {
+  color: #71767b;
+  border-color: #2f3336;
+}
+
+.x-note-update-toast[data-theme="dark"] .x-note-toast-btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
