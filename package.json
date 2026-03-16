@@ -6,5 +6,8 @@
 	},
 	"dependencies": {
 		"ccusage": "^15.6.0"
+	},
+	"devDependencies": {
+		"puppeteer-core": "^24.39.1"
 	}
 }

@@ -1,5 +1,15 @@
-// X-note Background Service Worker
+// XStickies Background Service Worker
 // Handles: extension icon click, sync message routing, alarms, API proxying
+
+const XNOTE_REMOTE_LOG = true;
+function remoteLog(level, ...args) {
+  if (!XNOTE_REMOTE_LOG) return;
+  fetch('http://localhost:9234', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ level, source: 'background', args }),
+  }).catch(() => {});
+}
 
 // --- Import constants (inline since service workers can't use content_scripts) ---
 const SYNC_CONFIG = {
@@ -11,8 +21,13 @@ const SYNC_CONFIG = {
   KEY_LAST_PULL: 'xNote_sync_lastPull',
   KEY_LOGGED_IN: 'xNote_sync_loggedIn',
   KEY_SYNC_STATUS: 'xNote_sync_status',
+  KEY_NOTE_META: 'xNote_sync_noteMeta',
+  TOMBSTONE_MAX_AGE: 30 * 24 * 60 * 60 * 1000,
+  TRASH_MAX_AGE: 14 * 24 * 60 * 60 * 1000,
+  KEY_TRASH_META: 'xNote_trashMeta',
   ALARM_PUSH: 'xnote-sync-push',
   ALARM_REFRESH: 'xnote-sync-refresh',
+  ALARM_TRASH_CLEANUP: 'xnote-trash-cleanup',
   DEBOUNCE_SECONDS: 30,
 };
 
@@ -76,6 +91,20 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return false;
   }
 
+  if (message.action === 'xnote-load-locale') {
+    (async () => {
+      try {
+        const url = chrome.runtime.getURL(`_locales/${message.lang}/messages.json`);
+        const resp = await fetch(url);
+        const data = await resp.json();
+        sendResponse({ data });
+      } catch (e) {
+        sendResponse({ error: e.message });
+      }
+    })();
+    return true; // async response
+  }
+
   return false;
 });
 
@@ -88,6 +117,15 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
   if (alarm.name === SYNC_CONFIG.ALARM_REFRESH) {
     await handleAuthRefresh();
   }
+  if (alarm.name === SYNC_CONFIG.ALARM_TRASH_CLEANUP) {
+    await executeTrashCleanup();
+  }
+});
+
+// Schedule trash cleanup alarm (every 6 hours)
+chrome.alarms.create(SYNC_CONFIG.ALARM_TRASH_CLEANUP, {
+  periodInMinutes: 360,
+  delayInMinutes: 1,
 });
 
 function schedulePushAlarm() {
@@ -223,9 +261,10 @@ async function executePush() {
   const token = await getToken();
   if (!token) return;
 
-  // Collect data from local storage
+  // Collect data from local storage (with per-note updatedAt + tombstones)
   const localData = await new Promise((resolve) => {
     chrome.storage.local.get(null, (result) => {
+      const noteMeta = result[SYNC_CONFIG.KEY_NOTE_META] || {};
       const blob = {
         notes: {},
         globalTags: result['xNote_GlobalTags'] || {},
@@ -235,14 +274,36 @@ async function executePush() {
       Object.keys(result).forEach(key => {
         if (key.startsWith('xNote_') && key !== 'xNote_GlobalTags' && !key.startsWith('xNoteTags_')
             && !key.startsWith('xNote_sync_') && key !== 'xNote_detectedTheme'
-            && key !== 'xNote_language' && key !== 'xNote_updateAvailable' && key !== 'xNote_dismissedVersion') {
+            && key !== 'xNote_language' && key !== 'xNote_updateAvailable' && key !== 'xNote_dismissedVersion'
+            && key !== SYNC_CONFIG.KEY_TRASH_META) {
           const username = key.replace('xNote_', '');
           const tagKey = `xNoteTags_${username}`;
-          blob.notes[username] = {
+          const meta = noteMeta[username];
+          const noteObj = {
             text: result[key] || '',
             tags: result[tagKey] || [],
-            updatedAt: Date.now(),
+            updatedAt: (meta && meta.updatedAt) || Date.now(),
           };
+          if (meta && meta.trashed) {
+            noteObj.trashed = true;
+            noteObj.trashedAt = meta.trashedAt;
+          }
+          blob.notes[username] = noteObj;
+        }
+      });
+
+      // Include tombstones for deleted notes
+      Object.entries(noteMeta).forEach(([username, meta]) => {
+        if (meta.deleted && !blob.notes[username]) {
+          const age = Date.now() - (meta.updatedAt || 0);
+          if (age <= SYNC_CONFIG.TOMBSTONE_MAX_AGE) {
+            blob.notes[username] = {
+              text: '',
+              tags: [],
+              updatedAt: meta.updatedAt,
+              deleted: true,
+            };
+          }
         }
       });
 
@@ -297,7 +358,7 @@ async function executePush() {
       [SYNC_CONFIG.KEY_SYNC_STATUS]: 'synced',
     });
   } catch (e) {
-    console.error('X-note background push error:', e);
+    console.error('XStickies background push error:', e);
     await chrome.storage.local.set({ [SYNC_CONFIG.KEY_SYNC_STATUS]: 'offline' });
   }
 }
@@ -320,7 +381,7 @@ function mergeBlobs(local, server) {
   // Rebuild globalTags
   const tags = {};
   Object.values(merged.notes).forEach(note => {
-    if (note.deleted) return;
+    if (note.deleted || note.trashed) return;
     (note.tags || []).forEach(tag => {
       tags[tag] = (tags[tag] || 0) + 1;
     });
@@ -328,4 +389,72 @@ function mergeBlobs(local, server) {
   merged.globalTags = tags;
 
   return merged;
+}
+
+/**
+ * Clean up expired trash items (trashedAt + TRASH_MAX_AGE).
+ * Converts expired trashed notes to tombstones (logged in) or deletes them (not logged in).
+ */
+async function executeTrashCleanup() {
+  const isLoggedIn = await new Promise(r =>
+    chrome.storage.local.get([SYNC_CONFIG.KEY_LOGGED_IN], (result) => r(!!result[SYNC_CONFIG.KEY_LOGGED_IN]))
+  );
+
+  const now = Date.now();
+
+  if (isLoggedIn) {
+    // Logged in: check noteMeta for trashed items
+    const result = await new Promise(r => chrome.storage.local.get([SYNC_CONFIG.KEY_NOTE_META], r));
+    const meta = result[SYNC_CONFIG.KEY_NOTE_META] || {};
+    const expiredKeys = [];
+
+    Object.entries(meta).forEach(([username, m]) => {
+      if (m.trashed && m.trashedAt && (now - m.trashedAt) > SYNC_CONFIG.TRASH_MAX_AGE) {
+        expiredKeys.push(username);
+      }
+    });
+
+    if (expiredKeys.length === 0) return;
+
+    // Remove note data and convert to tombstones
+    const storageKeysToRemove = [];
+    expiredKeys.forEach(username => {
+      storageKeysToRemove.push(`xNote_${username}`);
+      storageKeysToRemove.push(`xNoteTags_${username}`);
+      meta[username] = { updatedAt: now, deleted: true };
+    });
+
+    await new Promise(r => chrome.storage.local.remove(storageKeysToRemove, r));
+    await new Promise(r => chrome.storage.local.set({
+      [SYNC_CONFIG.KEY_NOTE_META]: meta,
+      [SYNC_CONFIG.KEY_SYNC_DIRTY]: true,
+    }, r));
+
+    // Schedule a push to sync the tombstones
+    schedulePushAlarm();
+  } else {
+    // Not logged in: check trashMeta in sync storage
+    const result = await new Promise(r => chrome.storage.sync.get([SYNC_CONFIG.KEY_TRASH_META], r));
+    const trashMeta = result[SYNC_CONFIG.KEY_TRASH_META] || {};
+    const expiredKeys = [];
+
+    Object.entries(trashMeta).forEach(([username, m]) => {
+      if (m.trashedAt && (now - m.trashedAt) > SYNC_CONFIG.TRASH_MAX_AGE) {
+        expiredKeys.push(username);
+      }
+    });
+
+    if (expiredKeys.length === 0) return;
+
+    // Remove note data and trashMeta entries
+    const storageKeysToRemove = [];
+    expiredKeys.forEach(username => {
+      storageKeysToRemove.push(`xNote_${username}`);
+      storageKeysToRemove.push(`xNoteTags_${username}`);
+      delete trashMeta[username];
+    });
+
+    await new Promise(r => chrome.storage.sync.remove(storageKeysToRemove, r));
+    await new Promise(r => chrome.storage.sync.set({ [SYNC_CONFIG.KEY_TRASH_META]: trashMeta }, r));
+  }
 }

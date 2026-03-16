@@ -1,0 +1,623 @@
+--- 日志服务器启动: 2026-03-16T13:51:55.876Z ---
+[13:51:56.872] [RAW] {"level":"info","source":"test","args":["服务器测试成功\!"]}
+[13:54:40.091] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[13:54:40.092] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[13:54:42.272] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[13:54:42.273] [LOG  ] [content] XStickies: Processing HoverCard for user: @daiming_cn
+[13:54:42.289] [LOG  ] [content] XStickies: No note found for xNote_@daiming_cn.
+[13:54:44.368] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[13:54:50.998] [LOG  ] [content] XStickies: Textarea focused.
+[13:54:52.212] [LOG  ] [content] XStickies: Textarea blurred.
+[13:54:53.112] [LOG  ] [content] XStickies: Textarea focused.
+[13:54:54.442] [LOG  ] [content] XStickies: Textarea blurred.
+[13:55:03.987] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[13:55:04.482] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[13:55:04.483] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @daiming_cn
+[13:55:43.723] [INFO ] [content] XStickies content script loaded https://x.com/home
+[14:01:09.635] [INFO ] [content] XStickies content script loaded https://x.com/home
+[14:01:16.446] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:01:18.447] [ERROR] [content] Could not extract username from HoverCard after waiting
+[14:01:21.145] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:01:23.150] [ERROR] [content] Could not extract username from HoverCard after waiting
+[14:01:24.073] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:01:25.082] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:01:25.403] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:01:25.888] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:01:26.075] [ERROR] [content] Could not extract username from HoverCard after waiting
+[14:01:27.430] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:01:28.347] [LOG  ] [content] XStickies: Processing HoverCard for user: @jefflijun
+[14:01:28.350] [LOG  ] [content] XStickies: No note found for xNote_@jefflijun.
+[14:01:29.041] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:01:29.042] [LOG  ] [content] XStickies: Processing HoverCard for user: @jefflijun
+[14:01:29.042] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @jefflijun
+[14:01:29.049] [LOG  ] [content] XStickies: No note found for xNote_@jefflijun.
+[14:01:31.293] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:01:31.294] [LOG  ] [content] XStickies: Processing HoverCard for user: @jefflijun
+[14:01:31.294] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @jefflijun
+[14:01:31.302] [LOG  ] [content] XStickies: No note found for xNote_@jefflijun.
+[14:01:32.558] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:01:32.787] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:01:33.303] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:01:33.304] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @jefflijun
+[14:01:34.202] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:01:34.203] [LOG  ] [content] XStickies: Processing HoverCard for user: @sitinme
+[14:01:34.209] [LOG  ] [content] XStickies: Note loaded for xNote_@sitinme.
+[14:01:44.624] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:01:44.625] [LOG  ] [content] XStickies: Processing HoverCard for user: @TGL
+[14:01:44.626] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @sitinme
+[14:01:44.634] [LOG  ] [content] XStickies: No note found for xNote_@TGL.
+[14:01:45.813] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:01:45.905] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:01:46.404] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:01:46.406] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @TGL
+[14:01:48.297] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:01:48.299] [LOG  ] [content] XStickies: Processing HoverCard for user: @sitinme
+[14:01:48.309] [LOG  ] [content] XStickies: Note loaded for xNote_@sitinme.
+[14:01:53.111] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:01:53.113] [LOG  ] [content] XStickies: Processing HoverCard for user: @sitinme
+[14:01:53.113] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @sitinme
+[14:01:53.124] [LOG  ] [content] XStickies: Note loaded for xNote_@sitinme.
+[14:02:10.792] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:02:10.809] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:02:11.309] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:02:11.310] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @sitinme
+[14:02:13.284] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:02:13.286] [LOG  ] [content] XStickies: Processing HoverCard for user: @anonymouslitt
+[14:02:13.293] [LOG  ] [content] XStickies: No note found for xNote_@anonymouslitt.
+[14:02:26.259] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:02:26.260] [LOG  ] [content] XStickies: Processing HoverCard for user: @anonymouslitt
+[14:02:26.260] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @anonymouslitt
+[14:02:26.266] [LOG  ] [content] XStickies: No note found for xNote_@anonymouslitt.
+[14:02:44.624] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:02:44.625] [LOG  ] [content] XStickies: Processing HoverCard for user: @RE_Games
+[14:02:44.625] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @anonymouslitt
+[14:02:44.634] [LOG  ] [content] XStickies: No note found for xNote_@RE_Games.
+[14:02:46.266] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:02:46.267] [LOG  ] [content] XStickies: Processing HoverCard for user: @RE_Games
+[14:02:46.267] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @RE_Games
+[14:02:46.277] [LOG  ] [content] XStickies: No note found for xNote_@RE_Games.
+[14:02:49.482] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:02:49.484] [LOG  ] [content] XStickies: Processing HoverCard for user: @RE_Games
+[14:02:49.484] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @RE_Games
+[14:02:49.493] [LOG  ] [content] XStickies: No note found for xNote_@RE_Games.
+[14:02:51.980] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:02:51.981] [LOG  ] [content] XStickies: Processing HoverCard for user: @anonymouslitt
+[14:02:51.981] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @RE_Games
+[14:02:51.988] [LOG  ] [content] XStickies: No note found for xNote_@anonymouslitt.
+[14:02:58.886] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:02:58.887] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @anonymouslitt
+[14:02:58.887] [LOG  ] [content] XStickies: Processing HoverCard for user: @RE_Games
+[14:02:58.894] [LOG  ] [content] XStickies: No note found for xNote_@RE_Games.
+[14:03:00.499] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:03:00.500] [LOG  ] [content] XStickies: Processing HoverCard for user: @RE_Games
+[14:03:00.501] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @RE_Games
+[14:03:00.509] [LOG  ] [content] XStickies: No note found for xNote_@RE_Games.
+[14:03:02.795] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:03:02.797] [LOG  ] [content] XStickies: Processing HoverCard for user: @sitinme
+[14:03:02.798] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @RE_Games
+[14:03:02.805] [LOG  ] [content] XStickies: Note loaded for xNote_@sitinme.
+[14:03:04.052] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:03:04.053] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @sitinme
+[14:03:04.053] [LOG  ] [content] XStickies: Processing HoverCard for user: @sitinme
+[14:03:04.059] [LOG  ] [content] XStickies: Note loaded for xNote_@sitinme.
+[14:03:04.686] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:03:05.013] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:03:05.509] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:03:05.510] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @sitinme
+[14:03:06.435] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:03:06.437] [LOG  ] [content] XStickies: Processing HoverCard for user: @sitinme
+[14:03:06.446] [LOG  ] [content] XStickies: Note loaded for xNote_@sitinme.
+[14:03:07.623] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:03:07.625] [LOG  ] [content] XStickies: Processing HoverCard for user: @sitinme
+[14:03:07.625] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @sitinme
+[14:03:07.632] [LOG  ] [content] XStickies: Note loaded for xNote_@sitinme.
+[14:03:08.238] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:03:08.576] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:03:09.078] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:03:09.079] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @sitinme
+[14:03:09.622] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:03:09.623] [LOG  ] [content] XStickies: Processing HoverCard for user: @sitinme
+[14:03:09.632] [LOG  ] [content] XStickies: Note loaded for xNote_@sitinme.
+[14:03:10.775] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:03:10.776] [LOG  ] [content] XStickies: Processing HoverCard for user: @sitinme
+[14:03:10.777] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @sitinme
+[14:03:10.784] [LOG  ] [content] XStickies: Note loaded for xNote_@sitinme.
+[14:03:11.099] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:03:11.367] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:03:11.860] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:03:11.862] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @sitinme
+[14:03:12.587] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:03:12.589] [LOG  ] [content] XStickies: Processing HoverCard for user: @CoinTracker
+[14:03:12.597] [LOG  ] [content] XStickies: No note found for xNote_@CoinTracker.
+[14:03:13.749] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:03:13.750] [LOG  ] [content] XStickies: Processing HoverCard for user: @CoinTracker
+[14:03:13.751] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @CoinTracker
+[14:03:13.760] [LOG  ] [content] XStickies: No note found for xNote_@CoinTracker.
+[14:03:14.570] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:03:15.433] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:03:15.933] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:03:15.934] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @CoinTracker
+[14:03:22.319] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:03:22.320] [LOG  ] [content] XStickies: Processing HoverCard for user: @sitinme
+[14:03:22.328] [LOG  ] [content] XStickies: Note loaded for xNote_@sitinme.
+[14:03:25.861] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:03:26.349] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:03:26.891] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:03:26.892] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @sitinme
+[14:07:59.371] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:07:59.372] [LOG  ] [content] XStickies: Processing HoverCard for user: @pirrer
+[14:07:59.386] [LOG  ] [content] XStickies: No note found for xNote_@pirrer.
+[14:08:06.534] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:08:06.941] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:08:07.443] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:08:07.445] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @pirrer
+[14:10:17.875] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:10:17.876] [LOG  ] [content] XStickies: Processing HoverCard for user: @TaiwanTodayJP
+[14:10:17.885] [LOG  ] [content] XStickies: No note found for xNote_@TaiwanTodayJP.
+[14:10:19.243] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:10:19.244] [LOG  ] [content] XStickies: Processing HoverCard for user: @TaiwanTodayJP
+[14:10:19.245] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @TaiwanTodayJP
+[14:10:19.252] [LOG  ] [content] XStickies: No note found for xNote_@TaiwanTodayJP.
+[14:10:21.078] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:10:21.079] [LOG  ] [content] XStickies: Processing HoverCard for user: @TaiwanTodayJP
+[14:10:21.079] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @TaiwanTodayJP
+[14:10:21.090] [LOG  ] [content] XStickies: No note found for xNote_@TaiwanTodayJP.
+[14:10:22.582] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:10:22.583] [LOG  ] [content] XStickies: Processing HoverCard for user: @TaiwanTodayJP
+[14:10:22.584] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @TaiwanTodayJP
+[14:10:22.593] [LOG  ] [content] XStickies: No note found for xNote_@TaiwanTodayJP.
+[14:10:24.316] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:10:24.316] [LOG  ] [content] XStickies: Processing HoverCard for user: @TaiwanTodayJP
+[14:10:24.316] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @TaiwanTodayJP
+[14:10:24.323] [LOG  ] [content] XStickies: No note found for xNote_@TaiwanTodayJP.
+[14:10:26.015] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:10:26.017] [LOG  ] [content] XStickies: Processing HoverCard for user: @TaiwanTodayJP
+[14:10:26.017] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @TaiwanTodayJP
+[14:10:26.023] [LOG  ] [content] XStickies: No note found for xNote_@TaiwanTodayJP.
+[14:10:27.842] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:10:27.842] [LOG  ] [content] XStickies: Processing HoverCard for user: @TaiwanTodayJP
+[14:10:27.843] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @TaiwanTodayJP
+[14:10:27.848] [LOG  ] [content] XStickies: No note found for xNote_@TaiwanTodayJP.
+[14:10:28.951] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:10:28.952] [LOG  ] [content] XStickies: Processing HoverCard for user: @TaiwanTodayJP
+[14:10:28.952] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @TaiwanTodayJP
+[14:10:28.964] [LOG  ] [content] XStickies: No note found for xNote_@TaiwanTodayJP.
+[14:10:30.715] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:10:30.716] [LOG  ] [content] XStickies: Processing HoverCard for user: @pirrer
+[14:10:30.717] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @TaiwanTodayJP
+[14:10:30.724] [LOG  ] [content] XStickies: No note found for xNote_@pirrer.
+[14:10:32.306] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:10:32.307] [LOG  ] [content] XStickies: Processing HoverCard for user: @TaiwanTodayJP
+[14:10:32.307] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @pirrer
+[14:10:32.308] [LOG  ] [content] XStickies: No note found for xNote_@TaiwanTodayJP.
+[14:10:33.459] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:10:33.460] [LOG  ] [content] XStickies: Processing HoverCard for user: @TaiwanTodayJP
+[14:10:33.460] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @TaiwanTodayJP
+[14:10:33.467] [LOG  ] [content] XStickies: No note found for xNote_@TaiwanTodayJP.
+[14:10:33.971] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:10:34.398] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:10:34.911] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:10:34.912] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @TaiwanTodayJP
+[14:10:35.523] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:10:35.524] [LOG  ] [content] XStickies: Processing HoverCard for user: @pirrer
+[14:10:35.535] [LOG  ] [content] XStickies: No note found for xNote_@pirrer.
+[14:10:36.702] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:10:36.703] [LOG  ] [content] XStickies: Processing HoverCard for user: @pirrer
+[14:10:36.703] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @pirrer
+[14:10:36.708] [LOG  ] [content] XStickies: No note found for xNote_@pirrer.
+[14:10:37.220] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:10:37.447] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:10:37.961] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:10:37.962] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @pirrer
+[14:10:39.390] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:10:39.392] [LOG  ] [content] XStickies: Processing HoverCard for user: @pirrer
+[14:10:39.406] [LOG  ] [content] XStickies: No note found for xNote_@pirrer.
+[14:10:40.443] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:10:40.443] [LOG  ] [content] XStickies: Processing HoverCard for user: @pirrer
+[14:10:40.444] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @pirrer
+[14:10:40.452] [LOG  ] [content] XStickies: No note found for xNote_@pirrer.
+[14:10:52.503] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:10:52.505] [LOG  ] [content] XStickies: Processing HoverCard for user: @pirrer
+[14:10:52.505] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @pirrer
+[14:10:52.517] [LOG  ] [content] XStickies: No note found for xNote_@pirrer.
+[14:11:06.611] [INFO ] [content] XStickies content script loaded https://x.com/home
+[14:14:43.697] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:14:43.731] [LOG  ] [content] XStickies: Processing HoverCard for user: @xicilion
+[14:14:43.735] [LOG  ] [content] XStickies: Note loaded for xNote_@xicilion.
+[14:14:43.735] [LOG  ] [content] positionPopover: left=843 top=442 hoverCard=(533,442,300x262)
+[14:14:43.735] [LOG  ] [content] positionPopover: left=843 top=442 hoverCard=(533,442,300x262)
+[14:14:43.738] [LOG  ] [content] positionPopover: left=843 top=442 hoverCard=(533,442,300x262)
+[14:14:46.565] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:14:46.566] [LOG  ] [content] XStickies: Processing HoverCard for user: @xicilion
+[14:14:46.566] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @xicilion
+[14:14:46.568] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x306)
+[14:14:46.574] [LOG  ] [content] XStickies: Note loaded for xNote_@xicilion.
+[14:14:46.575] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x306)
+[14:14:46.575] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x306)
+[14:14:48.246] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:14:48.247] [LOG  ] [content] XStickies: Processing HoverCard for user: @xicilion
+[14:14:48.248] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @xicilion
+[14:14:48.249] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x306)
+[14:14:48.255] [LOG  ] [content] XStickies: Note loaded for xNote_@xicilion.
+[14:14:48.256] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x306)
+[14:14:48.256] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x306)
+[14:14:49.408] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:14:49.409] [LOG  ] [content] XStickies: Processing HoverCard for user: @xicilion
+[14:14:49.409] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @xicilion
+[14:14:49.410] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x306)
+[14:14:49.413] [LOG  ] [content] XStickies: Note loaded for xNote_@xicilion.
+[14:14:49.414] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x306)
+[14:14:49.414] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x306)
+[14:14:51.795] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:14:51.796] [LOG  ] [content] XStickies: Processing HoverCard for user: @ZaynHao
+[14:14:51.796] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @xicilion
+[14:14:51.798] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x322)
+[14:14:51.804] [LOG  ] [content] XStickies: No note found for xNote_@ZaynHao.
+[14:14:51.804] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x322)
+[14:14:51.805] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x322)
+[14:14:53.516] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:14:53.517] [LOG  ] [content] XStickies: Processing HoverCard for user: @ZaynHao
+[14:14:53.517] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @ZaynHao
+[14:14:53.520] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x366)
+[14:14:53.526] [LOG  ] [content] XStickies: No note found for xNote_@ZaynHao.
+[14:14:53.527] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x366)
+[14:14:53.527] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x366)
+[14:14:54.486] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:14:54.750] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:14:55.243] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:14:55.244] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @ZaynHao
+[14:14:56.067] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:14:56.068] [LOG  ] [content] XStickies: Processing HoverCard for user: @ZaynHao
+[14:14:56.070] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x366)
+[14:14:56.078] [LOG  ] [content] XStickies: No note found for xNote_@ZaynHao.
+[14:14:56.078] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x366)
+[14:14:56.079] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x366)
+[14:15:03.113] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:15:03.710] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:15:04.217] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:15:04.218] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @ZaynHao
+[14:15:05.033] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:15:05.034] [LOG  ] [content] XStickies: Processing HoverCard for user: @xicilion
+[14:15:05.037] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x306)
+[14:15:06.285] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:15:06.285] [LOG  ] [content] XStickies: Processing HoverCard for user: @xicilion
+[14:15:06.286] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @xicilion
+[14:15:06.288] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x306)
+[14:15:06.950] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:15:07.064] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:15:07.562] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:15:07.563] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @xicilion
+[14:15:08.522] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:15:08.522] [LOG  ] [content] XStickies: Processing HoverCard for user: @Svwang1
+[14:15:08.524] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x362)
+[14:15:09.865] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:15:09.867] [LOG  ] [content] XStickies: Processing HoverCard for user: @Svwang1
+[14:15:09.867] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @Svwang1
+[14:15:09.869] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x406)
+[14:15:12.284] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:15:12.285] [LOG  ] [content] XStickies: Processing HoverCard for user: @Svwang1
+[14:15:12.286] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @Svwang1
+[14:15:12.289] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x406)
+[14:15:13.700] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:15:13.701] [LOG  ] [content] XStickies: Processing HoverCard for user: @Svwang1
+[14:15:13.701] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @Svwang1
+[14:15:13.702] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x406)
+[14:15:14.719] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:15:16.943] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:15:17.076] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:15:17.144] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:15:17.646] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:15:17.647] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @Svwang1
+[14:15:18.267] [INFO ] [content] XStickies content script loaded https://x.com/home
+[14:15:23.061] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:15:23.078] [LOG  ] [content] XStickies: Processing HoverCard for user: @vista8
+[14:15:23.081] [LOG  ] [content] positionPopover: left=800 top=237 hoverCard=(490,237,300x282)
+[14:15:23.083] [LOG  ] [content] XStickies: Note loaded for xNote_@vista8.
+[14:15:23.083] [LOG  ] [content] positionPopover: left=800 top=237 hoverCard=(490,237,300x282)
+[14:15:23.084] [LOG  ] [content] positionPopover: left=800 top=237 hoverCard=(490,237,300x282)
+[14:15:25.276] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:15:25.278] [LOG  ] [content] XStickies: Processing HoverCard for user: @vista8
+[14:15:25.278] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @vista8
+[14:15:25.280] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x326)
+[14:15:25.284] [LOG  ] [content] XStickies: Note loaded for xNote_@vista8.
+[14:15:25.285] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x326)
+[14:15:25.285] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x326)
+[14:15:25.831] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:15:26.028] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:15:26.550] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:15:26.551] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @vista8
+[14:15:27.338] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:15:27.339] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:15:27.341] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x422)
+[14:15:27.347] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:15:27.347] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x422)
+[14:15:27.347] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x422)
+[14:15:28.650] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:15:28.650] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:15:28.650] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:15:28.651] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x466)
+[14:15:28.654] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:15:28.654] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x466)
+[14:15:28.655] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x466)
+[14:18:07.843] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:18:07.844] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:18:07.844] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:18:07.844] [LOG  ] [content] positionPopover: left=310 top=10 hoverCard=(0,0,300x466)
+[14:18:14.640] [INFO ] [content] XStickies content script loaded https://x.com/0xluffy_eth
+[14:18:22.316] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:18:24.316] [ERROR] [content] Could not extract username from HoverCard after waiting
+[14:18:28.549] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:18:28.549] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:18:28.554] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:18:28.554] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:28.554] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:28.584] [LOG  ] [content] positionPopover: left=908 top=229 hoverCard=(598,229,300x466)
+[14:18:29.366] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:18:29.366] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:18:29.367] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:18:29.368] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:18:29.368] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:29.368] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:29.390] [LOG  ] [content] positionPopover: left=1037 top=229 hoverCard=(727,229,300x466)
+[14:18:30.282] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:18:30.283] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:18:30.283] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:18:30.284] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:18:30.285] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:30.285] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:30.307] [LOG  ] [content] positionPopover: left=908 top=229 hoverCard=(598,229,300x466)
+[14:18:32.032] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:18:32.033] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:18:32.033] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:18:32.036] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:18:32.037] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:32.037] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:32.041] [LOG  ] [content] positionPopover: left=1037 top=167 hoverCard=(727,167,300x466)
+[14:18:33.290] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:18:33.290] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:18:33.290] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:18:33.292] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:18:33.293] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:33.293] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:33.307] [LOG  ] [content] positionPopover: left=908 top=167 hoverCard=(598,167,300x466)
+[14:18:33.920] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:18:34.247] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:18:34.744] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:18:34.745] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @0xluffy_eth
+[14:18:35.732] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:18:35.733] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:18:35.739] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:18:35.739] [LOG  ] [content] positionPopover: left=1037 top=465 hoverCard=(727,465,300x466)
+[14:18:35.740] [LOG  ] [content] positionPopover: left=1037 top=465 hoverCard=(727,465,300x466)
+[14:18:35.741] [LOG  ] [content] positionPopover: left=1037 top=465 hoverCard=(727,465,300x466)
+[14:18:36.967] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:18:36.968] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:18:36.968] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:18:36.969] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:18:36.969] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:36.969] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:36.991] [LOG  ] [content] positionPopover: left=908 top=465 hoverCard=(598,465,300x466)
+[14:18:37.446] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:18:37.713] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:18:38.210] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:18:38.211] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @0xluffy_eth
+[14:18:39.267] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:18:39.268] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:18:39.272] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:18:39.273] [LOG  ] [content] positionPopover: left=1037 top=65 hoverCard=(727,65,300x466)
+[14:18:39.273] [LOG  ] [content] positionPopover: left=1037 top=65 hoverCard=(727,65,300x466)
+[14:18:39.274] [LOG  ] [content] positionPopover: left=1037 top=65 hoverCard=(727,65,300x466)
+[14:18:41.567] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:18:41.568] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:18:41.568] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:18:41.574] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:18:41.575] [LOG  ] [content] positionPopover: left=908 top=248 hoverCard=(598,248,300x466)
+[14:18:41.575] [LOG  ] [content] positionPopover: left=908 top=248 hoverCard=(598,248,300x466)
+[14:18:41.576] [LOG  ] [content] positionPopover: left=908 top=248 hoverCard=(598,248,300x466)
+[14:18:44.049] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:18:44.050] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:18:44.050] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:18:44.051] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:18:44.051] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:44.051] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:44.075] [LOG  ] [content] positionPopover: left=1037 top=396 hoverCard=(727,396,300x466)
+[14:18:45.268] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:18:45.268] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:18:45.269] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:18:45.269] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:18:45.269] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:45.270] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:45.291] [LOG  ] [content] positionPopover: left=908 top=396 hoverCard=(598,396,300x466)
+[14:18:45.662] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:18:45.885] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:18:46.378] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:18:46.378] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @0xluffy_eth
+[14:18:47.883] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:18:47.884] [LOG  ] [content] XStickies: Processing HoverCard for user: @HPE
+[14:18:47.889] [LOG  ] [content] XStickies: No note found for xNote_@HPE.
+[14:18:47.889] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:47.890] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:47.894] [LOG  ] [content] positionPopover: left=903 top=582 hoverCard=(593,582,300x270)
+[14:18:49.071] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:18:49.071] [LOG  ] [content] XStickies: Processing HoverCard for user: @HPE
+[14:18:49.072] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @HPE
+[14:18:49.075] [LOG  ] [content] XStickies: No note found for xNote_@HPE.
+[14:18:49.076] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:49.076] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:18:49.091] [LOG  ] [content] positionPopover: left=853 top=582 hoverCard=(543,582,300x270)
+[14:22:07.311] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:22:07.312] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:22:07.313] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @HPE
+[14:22:07.322] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:22:07.323] [LOG  ] [content] positionPopover: left=1037 top=24 hoverCard=(727,24,300x466)
+[14:22:07.323] [LOG  ] [content] positionPopover: left=1037 top=24 hoverCard=(727,24,300x466)
+[14:22:07.324] [LOG  ] [content] positionPopover: left=1037 top=24 hoverCard=(727,24,300x466)
+[14:22:08.708] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:22:08.709] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:22:08.709] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:22:08.717] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:22:08.718] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:22:08.718] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:22:08.725] [LOG  ] [content] positionPopover: left=908 top=24 hoverCard=(598,24,300x466)
+[14:22:11.768] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:22:11.769] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:22:11.769] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:22:11.777] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:22:11.777] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:22:11.778] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:22:11.783] [LOG  ] [content] positionPopover: left=908 top=24 hoverCard=(598,24,300x466)
+[14:24:38.305] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:24:38.306] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:24:38.306] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:24:38.314] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:24:38.315] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:24:38.315] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:24:38.327] [LOG  ] [content] positionPopover: left=1037 top=438 hoverCard=(727,438,300x466)
+[14:24:39.604] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:24:39.605] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:24:39.606] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:24:39.616] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:24:39.617] [LOG  ] [content] positionPopover: left=908 top=438 hoverCard=(598,438,300x466)
+[14:24:39.617] [LOG  ] [content] positionPopover: left=908 top=438 hoverCard=(598,438,300x466)
+[14:24:39.618] [LOG  ] [content] positionPopover: left=908 top=438 hoverCard=(598,438,300x466)
+[14:24:40.471] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:24:40.672] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:24:41.165] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:24:41.166] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @0xluffy_eth
+[14:24:41.989] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:24:41.990] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:24:41.991] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:24:41.991] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:24:41.991] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:24:42.035] [LOG  ] [content] positionPopover: left=1037 top=403 hoverCard=(727,403,300x466)
+[14:24:43.313] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:24:43.313] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:24:43.313] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:24:43.318] [LOG  ] [content] XStickies: No note found for xNote_@0xluffy_eth.
+[14:24:43.318] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:24:43.318] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:24:43.334] [LOG  ] [content] positionPopover: left=908 top=403 hoverCard=(598,403,300x466)
+[14:24:44.033] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:24:44.079] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:24:44.080] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:24:44.392] [LOG  ] [content] XStickies: Textarea focused.
+[14:24:46.682] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:24:47.172] [LOG  ] [content] XStickies: Mouse leave timeout triggered BUT textarea IS focused, NOT removing popover yet.
+[14:24:47.667] [LOG  ] [content] XStickies: Textarea blurred.
+[14:28:44.775] [LOG  ] [content] XStickies: Textarea focused.
+[14:28:46.456] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:28:46.457] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:28:46.457] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:28:46.470] [LOG  ] [content] positionPopover: left=1037 top=403 hoverCard=(727,403,300x466)
+[14:28:48.088] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:28:48.089] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:28:48.089] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:28:48.099] [LOG  ] [content] positionPopover: left=908 top=403 hoverCard=(598,403,300x466)
+[14:28:50.213] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:28:50.214] [LOG  ] [content] XStickies: Processing HoverCard for user: @0xluffy_eth
+[14:28:50.215] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @0xluffy_eth
+[14:28:50.227] [LOG  ] [content] positionPopover: left=1037 top=52 hoverCard=(727,52,300x466)
+[14:43:25.520] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:43:25.970] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:43:26.461] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:43:26.461] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @0xluffy_eth
+[14:46:54.530] [INFO ] [content] XStickies content script loaded https://x.com/NoneKeeper
+[14:48:00.061] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:48:00.417] [LOG  ] [content] XStickies: Processing HoverCard for user: @donvito
+[14:48:00.437] [LOG  ] [content] positionPopover: left=800 top=276 hoverCard=(490,276,300x302)
+[14:48:00.440] [LOG  ] [content] XStickies: No note found for xNote_@donvito.
+[14:48:00.441] [LOG  ] [content] positionPopover: left=800 top=276 hoverCard=(490,276,300x302)
+[14:48:00.442] [LOG  ] [content] positionPopover: left=800 top=276 hoverCard=(490,276,300x302)
+[14:48:02.191] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:48:02.193] [LOG  ] [content] XStickies: Processing HoverCard for user: @donvito
+[14:48:02.193] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @donvito
+[14:48:02.200] [LOG  ] [content] XStickies: No note found for xNote_@donvito.
+[14:48:02.200] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:02.200] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:02.205] [LOG  ] [content] positionPopover: left=955 top=256 hoverCard=(645,256,300x346)
+[14:48:04.947] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:48:05.280] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:48:05.783] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:48:05.783] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @donvito
+[14:48:08.113] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:48:08.114] [LOG  ] [content] XStickies: Processing HoverCard for user: @NoneKeeper
+[14:48:08.124] [LOG  ] [content] XStickies: No note found for xNote_@NoneKeeper.
+[14:48:08.124] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:08.125] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:08.128] [LOG  ] [content] positionPopover: left=971 top=305 hoverCard=(661,305,300x178)
+[14:48:08.756] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:48:08.809] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:48:09.305] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:48:09.306] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @NoneKeeper
+[14:48:10.456] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:48:10.457] [LOG  ] [content] XStickies: Processing HoverCard for user: @NoneKeeper
+[14:48:10.463] [LOG  ] [content] XStickies: No note found for xNote_@NoneKeeper.
+[14:48:10.464] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:10.464] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:10.469] [LOG  ] [content] positionPopover: left=971 top=612 hoverCard=(661,612,300x178)
+[14:48:17.457] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:48:17.458] [LOG  ] [content] XStickies: Processing HoverCard for user: @NoneKeeper
+[14:48:17.459] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @NoneKeeper
+[14:48:17.462] [LOG  ] [content] XStickies: No note found for xNote_@NoneKeeper.
+[14:48:17.463] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:17.464] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:17.467] [LOG  ] [content] positionPopover: left=971 top=422 hoverCard=(661,422,300x178)
+[14:48:19.094] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:48:19.095] [LOG  ] [content] XStickies: Processing HoverCard for user: @NoneKeeper
+[14:48:19.095] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @NoneKeeper
+[14:48:19.095] [LOG  ] [content] XStickies: No note found for xNote_@NoneKeeper.
+[14:48:19.095] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:19.096] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:19.117] [LOG  ] [content] positionPopover: left=872 top=422 hoverCard=(562,422,300x178)
+[14:48:19.539] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:48:19.559] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:48:19.568] [LOG  ] [content] XStickies: Mouse entered target, clearing hide timeout.
+[14:48:19.850] [LOG  ] [content] XStickies: Textarea focused.
+[14:48:26.862] [LOG  ] [content] XStickies: Textarea blurred.
+[14:48:26.863] [LOG  ] [content] XStickies: Textarea focused.
+[14:48:28.411] [LOG  ] [content] XStickies: Textarea blurred.
+[14:48:28.488] [LOG  ] [content] XStickies: Note and tags saved for xNote_@NoneKeeper
+[14:48:29.204] [LOG  ] [content] XStickies: Mouse left target, starting hide timer (focus check pending).
+[14:48:29.696] [LOG  ] [content] XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover.
+[14:48:29.698] [LOG  ] [content] XStickies: Removing popover (immediate: false) for @NoneKeeper
+[14:48:31.703] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:48:31.704] [LOG  ] [content] XStickies: Processing HoverCard for user: @NoneKeeper
+[14:48:31.709] [LOG  ] [content] XStickies: Note loaded for xNote_@NoneKeeper.
+[14:48:31.710] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:31.710] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:31.715] [LOG  ] [content] positionPopover: left=800 top=460 hoverCard=(490,460,300x178)
+[14:48:32.740] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:48:32.740] [LOG  ] [content] XStickies: Processing HoverCard for user: @NoneKeeper
+[14:48:32.740] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @NoneKeeper
+[14:48:32.742] [LOG  ] [content] XStickies: Note loaded for xNote_@NoneKeeper.
+[14:48:32.742] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:32.745] [LOG  ] [content] positionPopover: left=872 top=440 hoverCard=(562,440,300x178)
+[14:48:32.750] [LOG  ] [content] positionPopover: left=872 top=440 hoverCard=(562,440,300x178)
+[14:48:33.768] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:48:33.771] [LOG  ] [content] XStickies: Processing HoverCard for user: @NoneKeeper
+[14:48:33.772] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @NoneKeeper
+[14:48:33.775] [LOG  ] [content] XStickies: Note loaded for xNote_@NoneKeeper.
+[14:48:33.776] [LOG  ] [content] positionPopover: left=971 top=440 hoverCard=(661,440,300x178)
+[14:48:33.776] [LOG  ] [content] positionPopover: left=971 top=440 hoverCard=(661,440,300x178)
+[14:48:33.785] [LOG  ] [content] positionPopover: left=971 top=440 hoverCard=(661,440,300x178)
+[14:48:35.835] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:48:35.836] [LOG  ] [content] XStickies: Processing HoverCard for user: @NoneKeeper
+[14:48:35.836] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @NoneKeeper
+[14:48:35.840] [LOG  ] [content] XStickies: Note loaded for xNote_@NoneKeeper.
+[14:48:35.840] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:35.841] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:35.843] [LOG  ] [content] positionPopover: left=872 top=634 hoverCard=(562,634,300x178)
+[14:48:36.848] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:48:36.849] [LOG  ] [content] XStickies: Processing HoverCard for user: @NoneKeeper
+[14:48:36.849] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @NoneKeeper
+[14:48:36.850] [LOG  ] [content] XStickies: Note loaded for xNote_@NoneKeeper.
+[14:48:36.850] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:36.850] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:36.868] [LOG  ] [content] positionPopover: left=971 top=634 hoverCard=(661,634,300x178)
+[14:48:38.474] [LOG  ] [content] XStickies: HoverCard appeared. {}
+[14:48:38.475] [LOG  ] [content] XStickies: Processing HoverCard for user: @NoneKeeper
+[14:48:38.475] [LOG  ] [content] XStickies: Removing popover (immediate: true) for @NoneKeeper
+[14:48:38.478] [LOG  ] [content] XStickies: Note loaded for xNote_@NoneKeeper.
+[14:48:38.478] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:38.479] [WARN ] [content] positionPopover skipped: hoverCard at (0,0), waiting...
+[14:48:38.482] [LOG  ] [content] positionPopover: left=971 top=537 hoverCard=(661,537,300x178)

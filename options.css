@@ -73,12 +73,21 @@ body {
 
 /* Header */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 20px;
     padding-bottom: 15px;
     border-bottom: 1px solid var(--border-color);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
 
 h1 {
@@ -87,16 +96,10 @@ h1 {
     color: var(--accent);
 }
 
-.actions {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
 /* Language select */
 .language-select {
     height: 36px;
-    padding: 0 10px;
+    padding: 0 28px 0 12px;
     border-radius: 8px;
     border: 1px solid var(--input-border);
     background-color: transparent;
@@ -986,8 +989,7 @@ tr:hover .tag-edit-btn {
 /* ========== Cloud Sync UI ========== */
 
 .sync-section {
-    display: flex;
-    align-items: center;
+    margin-top: 12px;
 }
 
 .sync-logged-out {
@@ -1022,6 +1024,18 @@ tr:hover .tag-edit-btn {
 .sync-logged-in {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.sync-user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sync-actions {
+    display: flex;
+    align-items: center;
     gap: 8px;
 }
 
@@ -1033,12 +1047,8 @@ tr:hover .tag-edit-btn {
 }
 
 .sync-email {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--text-secondary);
-    max-width: 150px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .sync-status {
@@ -1073,12 +1083,13 @@ tr:hover .tag-edit-btn {
     background-color: rgba(244, 33, 46, 0.1);
 }
 
-.sync-now-btn {
+.sync-now-btn,
+.logout-btn {
     padding: 4px 12px;
     border-radius: 9999px;
-    border: 1px solid var(--accent);
+    border: 1px solid var(--input-border);
     background: none;
-    color: var(--accent);
+    color: var(--text-secondary);
     font-size: 12px;
     font-weight: 500;
     cursor: pointer;
@@ -1086,24 +1097,13 @@ tr:hover .tag-edit-btn {
 }
 
 .sync-now-btn:hover {
-    background-color: var(--accent);
-    color: white;
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
 .sync-now-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-}
-
-.logout-btn {
-    padding: 4px 10px;
-    border-radius: 9999px;
-    border: 1px solid var(--input-border);
-    background: none;
-    color: var(--text-secondary);
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.2s;
 }
 
 .logout-btn:hover {
@@ -1124,4 +1124,112 @@ tr:hover .tag-edit-btn {
 #migrationDialog .dialog-btn {
     width: 100%;
     text-align: center;
+}
+
+/* Trash count link in stats */
+.trash-count-link {
+    color: var(--text-secondary);
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    transition: color 0.2s;
+}
+
+.trash-count-link:hover {
+    color: var(--danger);
+}
+
+/* Trash view banner */
+.trash-banner {
+    background-color: rgba(244, 33, 46, 0.08);
+    border: 1px solid rgba(244, 33, 46, 0.2);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+}
+
+.trash-banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.trash-banner-content > span {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--danger);
+}
+
+.trash-banner-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.back-to-notes-btn {
+    padding: 6px 14px;
+    border-radius: 9999px;
+    border: 1px solid var(--input-border);
+    background: none;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.back-to-notes-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.empty-trash-btn {
+    padding: 6px 14px;
+    border-radius: 9999px;
+    border: 1px solid var(--danger);
+    background: none;
+    color: var(--danger);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.empty-trash-btn:hover {
+    background-color: var(--danger);
+    color: white;
+}
+
+/* Trash action buttons */
+.restore-btn {
+    background: none;
+    border: 1px solid var(--success);
+    color: var(--success);
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.restore-btn:hover {
+    background-color: var(--success);
+    color: white;
+}
+
+.permanent-delete-btn {
+    background: none;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.permanent-delete-btn:hover {
+    background-color: var(--danger);
+    color: white;
 }

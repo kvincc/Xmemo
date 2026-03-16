@@ -1,4 +1,4 @@
--- X-note Cloud Sync D1 Schema
+-- XStickies Cloud Sync D1 Schema
 
 CREATE TABLE IF NOT EXISTS users (
   id TEXT PRIMARY KEY,

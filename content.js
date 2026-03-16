@@ -1,9 +1,27 @@
-// X-note Extension
+// XStickies Extension
 // lib/constants.js and lib/storage-adapter.js are loaded before this file via manifest.json
 const XNOTE_DEBUG = false;
+const XNOTE_REMOTE_LOG = true; // 远程日志开关
+
+// --- X.com DOM 选择器（集中管理，便于未来热更新） ---
+const X_SELECTORS = {
+  HOVER_CARD: '[data-testid="hoverCardParent"]',
+  TWEET: '[data-testid="tweet"]',
+  USER_NAME: '[data-testid="User-Name"]',
+  USER_LINK: 'a[href^="/"]',
+};
 
 function debugLog(...args) {
   if (XNOTE_DEBUG) console.log(...args);
+  if (XNOTE_REMOTE_LOG) remoteLog('log', 'content', ...args);
+}
+
+function remoteLog(level, source, ...args) {
+  fetch('http://localhost:9234', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ level, source, args }),
+  }).catch(() => {}); // 服务器没开就静默忽略
 }
 
 // --- i18n helper (delegated to xnoteI18n module) ---
@@ -38,28 +56,40 @@ let notedUsersCache = new Set();
 function refreshNotedUsersCache() {
   storageAdapter.get(null, (result) => {
     notedUsersCache.clear();
-    Object.keys(result).forEach(key => {
-      if (key.startsWith('xNote_') && key !== 'xNote_GlobalTags' && !key.startsWith('xNoteTags_')) {
+    // Read trash meta to exclude trashed notes
+    const trashMeta = storageAdapter.isLoggedIn()
+      ? (result[XNOTE_SYNC.KEY_NOTE_META] || {})
+      : (result[XNOTE_SYNC.KEY_TRASH_META] || {});
+    for (const key of Object.keys(result)) {
+      if (key.startsWith('xNote_') && key !== 'xNote_GlobalTags' && !key.startsWith('xNoteTags_')
+          && !key.startsWith('xNote_sync_') && key !== 'xNote_detectedTheme'
+          && key !== 'xNote_language' && key !== 'xNote_updateAvailable' && key !== 'xNote_dismissedVersion'
+          && key !== XNOTE_SYNC.KEY_TRASH_META) {
         const username = key.replace('xNote_', '');
+        // Skip trashed notes
+        const meta = trashMeta[username];
+        if (meta && meta.trashed) continue;
+        // Skip empty notes
+        if (!result[key]) continue;
         notedUsersCache.add(username.toLowerCase());
       }
-    });
+    }
     scanVisibleTweets();
   });
 }
 
 function scanVisibleTweets() {
-  const tweets = document.querySelectorAll('[data-testid="tweet"]');
+  const tweets = document.querySelectorAll(X_SELECTORS.TWEET);
   tweets.forEach(tweet => processTweetForIndicator(tweet));
 }
 
 function processTweetForIndicator(tweet) {
   if (tweet.querySelector('.x-note-indicator')) return;
 
-  const userNameContainer = tweet.querySelector('[data-testid="User-Name"]');
+  const userNameContainer = tweet.querySelector(X_SELECTORS.USER_NAME);
   if (!userNameContainer) return;
 
-  const links = userNameContainer.querySelectorAll('a[href^="/"]');
+  const links = userNameContainer.querySelectorAll(X_SELECTORS.USER_LINK);
   let username = null;
 
   for (const link of links) {
@@ -93,12 +123,25 @@ if (typeof chrome !== 'undefined' && chrome.storage) {
   storageAdapter.onChanged((changes, areaName) => {
     let needsRefresh = false;
     for (const key of Object.keys(changes)) {
-      if (key.startsWith('xNote_') && key !== 'xNote_GlobalTags' && !key.startsWith('xNoteTags_')) {
+      if (key.startsWith('xNote_') && key !== 'xNote_GlobalTags' && !key.startsWith('xNoteTags_')
+          && !key.startsWith('xNote_sync_') && key !== 'xNote_detectedTheme'
+          && key !== 'xNote_language' && key !== 'xNote_updateAvailable' && key !== 'xNote_dismissedVersion'
+          && key !== XNOTE_SYNC.KEY_TRASH_META) {
         needsRefresh = true;
         break;
       }
     }
     if (needsRefresh) refreshNotedUsersCache();
+  });
+
+  // Re-initialize when language preference changes (e.g. from options page)
+  // Debounce to prevent concurrent init() calls during rapid language switching
+  let _langChangeTimer = null;
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === 'local' && changes.xNote_language) {
+      clearTimeout(_langChangeTimer);
+      _langChangeTimer = setTimeout(() => initialize(), 300);
+    }
   });
 }
 
@@ -127,6 +170,7 @@ function cleanup() {
 
 // --- Initialize or reinitialize the extension ---
 function initialize() {
+  remoteLog('info', 'content', 'XStickies content script loaded', window.location.href);
   cleanup(); // Clean up first
 
   // Initialize i18n first, then storage adapter
@@ -276,12 +320,12 @@ function handleMutations(mutationsList, observer) {
       // Detect Added HoverCard
       mutation.addedNodes.forEach((node) => {
         if (node.nodeType === Node.ELEMENT_NODE) {
-          const hoverCard = node.matches('[data-testid="hoverCardParent"]')
+          const hoverCard = node.matches(X_SELECTORS.HOVER_CARD)
             ? node
-            : node.querySelector('[data-testid="hoverCardParent"]');
+            : node.querySelector(X_SELECTORS.HOVER_CARD);
           if (hoverCard && !processedHoverCards.has(hoverCard)) {
             processedHoverCards.add(hoverCard);
-            debugLog("X-note: HoverCard appeared.", hoverCard);
+            debugLog("XStickies: HoverCard appeared.", hoverCard);
             processHoverCardAppearance(hoverCard);
 
             hoverCard.addEventListener("mouseleave", handleMouseLeave);
@@ -290,8 +334,8 @@ function handleMutations(mutationsList, observer) {
 
           // Detect tweets in timeline for note indicators
           const tweets = [];
-          if (node.matches?.('[data-testid="tweet"]')) tweets.push(node);
-          const childTweets = node.querySelectorAll?.('[data-testid="tweet"]');
+          if (node.matches?.(X_SELECTORS.TWEET)) tweets.push(node);
+          const childTweets = node.querySelectorAll?.(X_SELECTORS.TWEET);
           if (childTweets) tweets.push(...childTweets);
           tweets.forEach(tweet => processTweetForIndicator(tweet));
         }
@@ -302,11 +346,9 @@ function handleMutations(mutationsList, observer) {
 }
 
 
-// --- 2. Handle the appearance of HoverCard ---
-function processHoverCardAppearance(hoverCard) {
-  // --- 2a. 识别用户 (using the robust strategy from previous version) ---
-  let username = null;
-  const userLinks = hoverCard.querySelectorAll('a[href^="/"]');
+// --- 2. Extract username from HoverCard ---
+function extractUsernameFromHoverCard(hoverCard) {
+  const userLinks = hoverCard.querySelectorAll(X_SELECTORS.USER_LINK);
   for (const link of userLinks) {
     const spans = link.querySelectorAll("span");
     for (const span of spans) {
@@ -317,25 +359,51 @@ function processHoverCardAppearance(hoverCard) {
         text.length > 1 &&
         link.getAttribute("href") === `/${text.substring(1)}`
       ) {
-        username = text;
-        break;
+        return text;
       }
     }
-    if (username) break;
   }
+  return null;
+}
+
+// Wait for username to appear in HoverCard (DOM may load progressively)
+function waitForUsername(hoverCard, maxWait = 2000) {
+  return new Promise((resolve) => {
+    // Try immediately first
+    const immediate = extractUsernameFromHoverCard(hoverCard);
+    if (immediate) return resolve(immediate);
+
+    // Observe for changes inside the hoverCard
+    const innerObserver = new MutationObserver(() => {
+      const username = extractUsernameFromHoverCard(hoverCard);
+      if (username) {
+        innerObserver.disconnect();
+        resolve(username);
+      }
+    });
+    innerObserver.observe(hoverCard, { childList: true, subtree: true });
+
+    // Timeout fallback
+    setTimeout(() => {
+      innerObserver.disconnect();
+      resolve(null);
+    }, maxWait);
+  });
+}
+
+// --- Handle the appearance of HoverCard ---
+async function processHoverCardAppearance(hoverCard) {
+  // --- 2a. 识别用户 (wait for DOM to be ready) ---
+  const username = await waitForUsername(hoverCard);
 
   if (!username) {
-    console.error(
-      "X-note: Could not extract username from HoverCard.",
-      hoverCard
-    );
-    // Remove from processed set if we failed early
+    remoteLog('error', 'content', 'Could not extract username from HoverCard after waiting');
     processedHoverCards.delete(hoverCard);
     return;
   }
 
   const userKey = `xNote_${username}`;
-  debugLog(`X-note: Processing HoverCard for user: ${username}`);
+  debugLog(`XStickies: Processing HoverCard for user: ${username}`);
 
   // --- Remove any existing popover before creating a new one ---
   removeNotesPopover(true); // Pass true to clear immediately
@@ -440,25 +508,9 @@ function processHoverCardAppearance(hoverCard) {
   };
   noteTextarea.addEventListener('keydown', keyHandler);
 
-  // Sync status indicator (only shown when logged in)
   const saveRow = document.createElement('div');
   saveRow.className = 'x-note-save-row';
   saveRow.appendChild(saveButton);
-
-  if (storageAdapter.isLoggedIn()) {
-    const syncIndicator = document.createElement('span');
-    syncIndicator.className = 'x-note-sync-indicator';
-    syncIndicator.id = 'x-note-sync-indicator';
-    updateSyncIndicator(syncIndicator);
-    saveRow.appendChild(syncIndicator);
-
-    // Listen for sync status changes
-    chrome.storage.onChanged.addListener((changes, area) => {
-      if (area === 'local' && changes[XNOTE_SYNC.KEY_SYNC_STATUS]) {
-        updateSyncIndicator(syncIndicator, changes[XNOTE_SYNC.KEY_SYNC_STATUS].newValue);
-      }
-    });
-  }
 
   notesPopover.appendChild(noteTextarea);
   notesPopover.appendChild(tagSection);
@@ -474,6 +526,13 @@ function processHoverCardAppearance(hoverCard) {
   // --- 定义一个统一的定位函数 (基于 getBoundingClientRect + viewport 边界检查) ---
   function positionPopover() {
     const hoverCardRect = hoverCard.getBoundingClientRect();
+
+    // 防护：hoverCard 在 (0,0) 说明 X 还没把它移到正确位置，跳过
+    if (hoverCardRect.left === 0 && hoverCardRect.top === 0) {
+      remoteLog('warn', 'content', 'positionPopover skipped: hoverCard at (0,0), waiting...');
+      return;
+    }
+
     const gap = 10;
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
@@ -500,10 +559,19 @@ function processHoverCardAppearance(hoverCard) {
     notesPopover.style.left = `${left}px`;
     notesPopover.style.top = `${top}px`;
     notesPopover.style.bottom = 'auto';
+    remoteLog('log', 'content', `positionPopover: left=${left.toFixed(0)} top=${top.toFixed(0)} hoverCard=(${hoverCardRect.left.toFixed(0)},${hoverCardRect.top.toFixed(0)},${hoverCardRect.width.toFixed(0)}x${hoverCardRect.height.toFixed(0)})`);
   }
 
-  // --- 初始定位 ---
-  positionPopover();
+  // --- 初始定位：轮询等待 hoverCard 移到正确位置 ---
+  function waitAndPosition(retries = 10) {
+    const rect = hoverCard.getBoundingClientRect();
+    if (rect.left === 0 && rect.top === 0 && retries > 0) {
+      requestAnimationFrame(() => waitAndPosition(retries - 1));
+    } else {
+      positionPopover();
+    }
+  }
+  waitAndPosition();
   
   // Store reference to the current popover
   currentNotesPopover = notesPopover;
@@ -531,14 +599,14 @@ function processHoverCardAppearance(hoverCard) {
 
 // --- NEW: Event Handlers for Textarea Focus/Blur ---
 function handleTextareaFocus() {
-  debugLog("X-note: Textarea focused.");
+  debugLog("XStickies: Textarea focused.");
   isNotesTextareaFocused = true;
   // Immediately clear any pending hide timeout when user starts typing/focuses
   clearTimeout(hidePopoverTimeout);
 }
 
 function handleTextareaBlur() {
-  debugLog("X-note: Textarea blurred.");
+  debugLog("XStickies: Textarea blurred.");
   isNotesTextareaFocused = false;
   // Optional: We could potentially re-trigger the hide check here if the mouse
   // is already outside, but relying on the next natural mouseleave might be safer.
@@ -550,7 +618,7 @@ function handleTextareaBlur() {
 function handleMouseEnter() {
   // When mouse enters the HoverCard or the Popover, clear the hide timeout
   clearTimeout(hidePopoverTimeout);
-  debugLog("X-note: Mouse entered target, clearing hide timeout.");
+  debugLog("XStickies: Mouse entered target, clearing hide timeout.");
 }
 
 function handleMouseLeave() {
@@ -559,12 +627,12 @@ function handleMouseLeave() {
     // ***** CHECK FOCUS STATE BEFORE REMOVING *****
     if (!isNotesTextareaFocused) {
       debugLog(
-        "X-note: Mouse leave timeout triggered AND textarea not focused, removing popover."
+        "XStickies: Mouse leave timeout triggered AND textarea not focused, removing popover."
       );
       removeNotesPopover();
     } else {
       debugLog(
-        "X-note: Mouse leave timeout triggered BUT textarea IS focused, NOT removing popover yet."
+        "XStickies: Mouse leave timeout triggered BUT textarea IS focused, NOT removing popover yet."
       );
       // Popover stays open because the user is likely still typing or interacting.
       // It will only close after the textarea loses focus AND the mouse leaves.
@@ -572,14 +640,14 @@ function handleMouseLeave() {
     // *********************************************
   }, 500);
   debugLog(
-    "X-note: Mouse left target, starting hide timer (focus check pending)."
+    "XStickies: Mouse left target, starting hide timer (focus check pending)."
   );
 }
 
 function removeNotesPopover(immediate = false) {
   if (currentNotesPopover) {
     debugLog(
-      `X-note: Removing popover (immediate: ${immediate}) for ${currentNotesPopover.dataset.username}`
+      `XStickies: Removing popover (immediate: ${immediate}) for ${currentNotesPopover.dataset.username}`
     );
 
     // ***** CLEAN UP FOCUS/BLUR LISTENERS *****
@@ -703,7 +771,7 @@ function saveNoteWithTags(noteKey, noteText, tags, username, buttonElement) {
   try {
     storageAdapter.getBytesInUse(null, (bytesInUse) => {
       if (chrome.runtime.lastError) {
-        console.error('X-note: getBytesInUse error:', chrome.runtime.lastError);
+        console.error('XStickies: getBytesInUse error:', chrome.runtime.lastError);
         showPopoverMessage(buttonElement, t('content_save_error_check_storage'), 'error');
         return;
       }
@@ -716,7 +784,7 @@ function saveNoteWithTags(noteKey, noteText, tags, username, buttonElement) {
 
       storageAdapter.get([tagKey, 'xNote_GlobalTags'], (result) => {
         if (chrome.runtime.lastError) {
-          console.error('X-note: get error:', chrome.runtime.lastError);
+          console.error('XStickies: get error:', chrome.runtime.lastError);
           showPopoverMessage(buttonElement, t('content_save_error_read_tags'), 'error');
           return;
         }
@@ -742,10 +810,10 @@ function saveNoteWithTags(noteKey, noteText, tags, username, buttonElement) {
 
         storageAdapter.set(data, () => {
           if (chrome.runtime.lastError) {
-            console.error(`X-note: Error saving:`, chrome.runtime.lastError);
+            console.error(`XStickies: Error saving:`, chrome.runtime.lastError);
             showPopoverMessage(buttonElement, t('content_save_error_prefix', [chrome.runtime.lastError.message || '']), 'error');
           } else {
-            debugLog(`X-note: Note and tags saved for ${noteKey}`);
+            debugLog(`XStickies: Note and tags saved for ${noteKey}`);
             // Update timeline indicator cache
             const usernameFromKey = noteKey.replace('xNote_', '').toLowerCase();
             if (noteText) {
@@ -770,7 +838,7 @@ function saveNoteWithTags(noteKey, noteText, tags, username, buttonElement) {
       });
     });
   } catch (e) {
-    console.error('X-note: Save failed (context may be invalidated):', e);
+    console.error('XStickies: Save failed (context may be invalidated):', e);
     showPopoverMessage(buttonElement, t('content_save_error_refresh'), 'error');
   }
 }
@@ -817,14 +885,14 @@ function saveNote(key, note, buttonElement) {
     storageAdapter.set(data, () => {
       if (chrome.runtime.lastError) {
         const errorMsg = chrome.runtime.lastError.message || '';
-        console.error(`X-note: Error saving note for ${key}:`, chrome.runtime.lastError);
+        console.error(`XStickies: Error saving note for ${key}:`, chrome.runtime.lastError);
         if (errorMsg.includes('QUOTA') || errorMsg.includes('quota') || errorMsg.includes('storage')) {
           showPopoverMessage(buttonElement, t('content_storage_full'), 'error');
         } else {
           showPopoverMessage(buttonElement, t('content_save_error_prefix', [errorMsg]), 'error');
         }
       } else {
-        debugLog(`X-note: Note saved for ${key}:`, note);
+        debugLog(`XStickies: Note saved for ${key}:`, note);
         if (buttonElement) {
           const originalText = buttonElement.textContent;
           buttonElement.textContent = t('content_saved');
@@ -840,7 +908,7 @@ function saveNote(key, note, buttonElement) {
     });
   });
   } catch (e) {
-    console.error('X-note: Save failed (context may be invalidated):', e);
+    console.error('XStickies: Save failed (context may be invalidated):', e);
     showPopoverMessage(buttonElement, t('content_save_error_refresh'), 'error');
   }
 }
@@ -849,14 +917,14 @@ function loadNote(key, textareaElement, callback) {
   storageAdapter.get([key], (result) => {
     if (chrome.runtime.lastError) {
       console.error(
-        `X-note: Error loading note for ${key}:`,
+        `XStickies: Error loading note for ${key}:`,
         chrome.runtime.lastError
       );
     } else if (result[key] !== undefined) {
       textareaElement.value = result[key];
-      debugLog(`X-note: Note loaded for ${key}.`);
+      debugLog(`XStickies: Note loaded for ${key}.`);
     } else {
-      debugLog(`X-note: No note found for ${key}.`);
+      debugLog(`XStickies: No note found for ${key}.`);
       textareaElement.value = "";
     }
     

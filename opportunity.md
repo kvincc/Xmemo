@@ -1,7 +1,7 @@
-# X-note 商业化机会分析
+# XStickies 商业化机会分析
 
 ## 项目概况
-X-note 是一个Chrome浏览器扩展，让用户在Twitter/X用户头像悬停时添加个人笔记。现有功能包括：
+XStickies 是一个Chrome浏览器扩展，让用户在Twitter/X用户头像悬停时添加个人笔记。现有功能包括：
 - 悬停显示笔记编辑框
 - Chrome同步存储
 - 笔记管理界面（搜索、导入导出）

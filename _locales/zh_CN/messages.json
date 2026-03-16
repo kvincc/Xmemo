@@ -1,6 +1,6 @@
 {
   "ext_name": {
-    "message": "X-note"
+    "message": "XStickies"
   },
   "ext_description": {
     "message": "为 Twitter 用户悬停卡片添加个人备注，支持云同步。"
@@ -66,7 +66,7 @@
   },
 
   "options_title": {
-    "message": "X-note 笔记管理"
+    "message": "XStickies 笔记管理"
   },
   "options_google_login": {
     "message": "使用 Google 登录"
@@ -169,10 +169,10 @@
     "message": "暂无笔记内容。当你在 X (Twitter) 上为用户添加笔记后，它们会显示在这里。"
   },
   "options_confirm_delete_title": {
-    "message": "确认删除"
+    "message": "移入垃圾桶"
   },
   "options_confirm_delete_message": {
-    "message": "您确定要删除这条笔记吗？此操作无法撤销。"
+    "message": "将此笔记移入垃圾桶？14 天后将自动删除。"
   },
   "common_cancel": {
     "message": "取消"
@@ -348,11 +348,48 @@
     "message": "自动（浏览器）"
   },
 
+  "options_trash_count": {
+    "message": "垃圾桶 ($1)",
+    "placeholders": {
+      "1": { "content": "$1" }
+    }
+  },
+  "options_trash_viewing": {
+    "message": "正在查看垃圾桶"
+  },
+  "options_back_to_notes": {
+    "message": "返回笔记"
+  },
+  "options_empty_trash": {
+    "message": "清空垃圾桶"
+  },
+  "options_empty_trash_title": {
+    "message": "清空垃圾桶"
+  },
+  "options_empty_trash_message": {
+    "message": "永久删除垃圾桶中的所有笔记？此操作无法撤销。"
+  },
+  "options_restore_btn": {
+    "message": "恢复"
+  },
+  "options_permanent_delete_btn": {
+    "message": "永久删除"
+  },
+  "options_confirm_trash_btn": {
+    "message": "移入垃圾桶"
+  },
+  "options_note_trashed": {
+    "message": "笔记已移入垃圾桶"
+  },
+  "options_note_restored": {
+    "message": "笔记已恢复"
+  },
+
   "toast_update_title": {
     "message": "新版本已就绪！"
   },
   "toast_update_message": {
-    "message": "X-note $1 已就绪，重启浏览器即可更新。",
+    "message": "XStickies $1 已就绪，重启浏览器即可更新。",
     "placeholders": {
       "1": { "content": "$1" }
     }

@@ -4,7 +4,7 @@
 
 ## 项目概述
 
-X-note 是一个 Chrome 浏览器扩展，允许用户为 Twitter/X 的用户悬停卡片添加个人备注。当鼠标悬停在用户头像或用户名上时，备注编辑弹窗会出现在悬停卡片旁边，方便对任意 X 用户进行快速备注和查看。
+XStickies 是一个 Chrome 浏览器扩展，允许用户为 Twitter/X 的用户悬停卡片添加个人备注。当鼠标悬停在用户头像或用户名上时，备注编辑弹窗会出现在悬停卡片旁边，方便对任意 X 用户进行快速备注和查看。
 
 ## 架构
 
@@ -59,7 +59,15 @@ X-note 是一个 Chrome 浏览器扩展，允许用户为 Twitter/X 的用户悬
    - 在 `chrome://extensions/` 页面点击扩展卡片上的刷新按钮
    - 重新加载 X 页面以测试内容脚本的更改
 
-3. **调试**：
+3. **远程调试日志（推荐）**：
+   - 启动日志服务器：`node devtools/log-server.js`
+   - 扩展中的 `remoteLog()` 会把 content.js / background.js 的日志发到 `http://localhost:9234`
+   - 日志同时输出到终端和 `debug.log` 文件，Claude Code 可直接读取 `debug.log` 分析问题
+   - 开关：`content.js` 顶部的 `XNOTE_REMOTE_LOG`（发布前设为 `false`）
+   - 日志服务器没开时，`fetch` 静默失败，对用户无任何影响
+   - **调试循环**：改代码 → 用户刷新扩展+页面 → Claude Code 读 `debug.log` → 继续修
+
+4. **调试（传统方式）**：
    - 内容脚本调试：在 X 页面使用浏览器开发者工具
    - 后台脚本调试：在扩展详情中点击 "service worker" 链接
    - 选项页调试：右键点击扩展图标 → 检查弹出窗口，或直接打开选项页
@@ -101,6 +109,12 @@ observer.observe(document.body, { childList: true, subtree: true });
 
 ## 内容脚本注入
 扩展仅在 X 域名（`https://*.x.com/*`、`https://x.com/*`）上运行，页面加载时自动注入 `lib/constants.js` → `lib/storage-adapter.js` → `content.js`（顺序重要）。
+
+## i18n（运行时语言切换）
+- `lib/i18n.js` 提供 `xnoteI18n.init()` / `xnoteI18n.t(key)` 实现运行时语言切换
+- **Content script 不能直接 `fetch()` 扩展内部资源**（`chrome-extension://` URL 对 content script 是跨域）。`loadMessages()` 失败时通过 `chrome.runtime.sendMessage({ action: 'xnote-load-locale' })` 让 background 代为加载，`background.js` 中有对应处理器
+- Options 页在扩展 context 中运行，可直接 `fetch()`，无此限制
+- `t()` 在自定义查找未命中时始终 fallback 到 `chrome.i18n.getMessage()`，确保用户永远不会看到 raw key
 
 ## 常见注意事项
 - Twitter 的 DOM 结构变更可能导致悬停卡片检测失效

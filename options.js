@@ -55,9 +55,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const catchUpBtn = document.getElementById('catchUpBtn');
     const selectAllCheckbox = document.getElementById('selectAllCheckbox');
 
+    // Trash elements
+    const trashCountEl = document.getElementById('trashCount');
+    const trashBanner = document.getElementById('trashBanner');
+    const backToNotesBtn = document.getElementById('backToNotesBtn');
+    const emptyTrashBtn = document.getElementById('emptyTrashBtn');
+    const emptyTrashDialog = document.getElementById('emptyTrashDialog');
+    const confirmEmptyTrash = document.getElementById('confirmEmptyTrash');
+    const cancelEmptyTrash = document.getElementById('cancelEmptyTrash');
+
     // State
     let allNotes = [];
     let filteredNotes = [];
+    let trashedNotes = []; // Notes in trash
+    let isTrashView = false; // Whether we're viewing trash
     let noteToDelete = null;
     let globalTags = {};
     let activeFilters = new Set();
@@ -68,44 +79,65 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadAllNotes() {
         storageAdapter.get(null, (result) => {
             allNotes = [];
+            trashedNotes = [];
             globalTags = result['xNote_GlobalTags'] || {};
 
-            // Filter keys that start with "xNote_" but exclude global tags
-            Object.keys(result).forEach(key => {
-                if (key.startsWith('xNote_') && key !== 'xNote_GlobalTags' && !key.startsWith('xNoteTags_')) {
-                    const username = key.replace('xNote_', '');
-                    const note = result[key];
-                    const tagKey = `xNoteTags_${username}`;
-                    const tags = result[tagKey] || [];
-                    
-                    allNotes.push({
-                        key,
-                        username,
-                        note,
-                        tags: tags,
-                        tagKey: tagKey,
-                        originalTags: [...tags],
-                        _lc_username: username.toLowerCase(),
-                        _lc_note: note.toLowerCase(),
-                        _lc_tags: tags.map(t => t.toLowerCase())
-                    });
-                }
-            });
+            // Read trash metadata
+            storageAdapter.getTrashMeta((trashMeta) => {
+                // Filter keys that start with "xNote_" but exclude metadata keys
+                Object.keys(result).forEach(key => {
+                    if (key.startsWith('xNote_') && key !== 'xNote_GlobalTags' && !key.startsWith('xNoteTags_')
+                        && !key.startsWith('xNote_sync_') && key !== 'xNote_detectedTheme'
+                        && key !== 'xNote_language' && key !== 'xNote_updateAvailable' && key !== 'xNote_dismissedVersion'
+                        && key !== XNOTE_SYNC.KEY_TRASH_META) {
+                        const username = key.replace('xNote_', '');
+                        const note = typeof result[key] === 'string' ? result[key] : '';
+                        const tagKey = `xNoteTags_${username}`;
+                        const tags = result[tagKey] || [];
 
-            // Sort by username
-            allNotes.sort((a, b) => a.username.localeCompare(b.username));
-            
-            // Update filtered notes
-            filterNotes(searchInput.value);
-            
-            // Update UI
-            updateTable();
-            updateNoteCount();
-            updateTagCount();
-            updatePopularTags();
-            
-            // Update storage usage
-            updateStorageUsage();
+                        // Skip empty notes (no text and no tags)
+                        if (!note && tags.length === 0) return;
+
+                        const noteItem = {
+                            key,
+                            username,
+                            note,
+                            tags: tags,
+                            tagKey: tagKey,
+                            originalTags: [...tags],
+                            _lc_username: username.toLowerCase(),
+                            _lc_note: note.toLowerCase(),
+                            _lc_tags: tags.map(t => t.toLowerCase())
+                        };
+
+                        // Check if trashed
+                        const meta = trashMeta[username];
+                        if (meta && meta.trashed) {
+                            noteItem.trashedAt = meta.trashedAt;
+                            trashedNotes.push(noteItem);
+                        } else {
+                            allNotes.push(noteItem);
+                        }
+                    }
+                });
+
+                // Sort
+                allNotes.sort((a, b) => a.username.localeCompare(b.username));
+                trashedNotes.sort((a, b) => (b.trashedAt || 0) - (a.trashedAt || 0));
+
+                // Update filtered notes
+                filterNotes(searchInput.value);
+
+                // Update UI
+                updateTable();
+                updateNoteCount();
+                updateTagCount();
+                updatePopularTags();
+                updateTrashCount();
+
+                // Update storage usage
+                updateStorageUsage();
+            });
         });
     }
 
@@ -197,12 +229,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 tr.classList.add('selected');
             }
             
-            // Checkbox cell
+            // Checkbox cell (hidden in trash view)
             const checkboxCell = document.createElement('td');
             checkboxCell.className = 'row-checkbox-cell';
-            checkboxCell.innerHTML = `
-                <input type="checkbox" class="row-checkbox" data-username="${item.username}" ${selectedUsers.has(item.username) ? 'checked' : ''}>
-            `;
+            if (!isTrashView) {
+                checkboxCell.innerHTML = `
+                    <input type="checkbox" class="row-checkbox" data-username="${item.username}" ${selectedUsers.has(item.username) ? 'checked' : ''}>
+                `;
+            }
             
             // Username cell
             const usernameCell = document.createElement('td');
@@ -214,16 +248,23 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Tags cell
             const tagsCell = document.createElement('td');
-            const tagsHtml = item.tags.length > 0
-                ? `<div class="note-tags">
-                    ${item.tags.map(tag => `<span class="tag">${escapeHTML(tag)}</span>`).join('')}
-                    <button class="tag-edit-btn" data-username="${item.username}">${t('common_edit')}</button>
-                   </div>`
-                : `<div class="note-tags">
-                    <span class="no-tags" style="color: #536471; font-style: italic; font-size: 12px;"> </span>
-                    <button class="tag-edit-btn" data-username="${item.username}">${t('common_add')}</button>
-                   </div>`;
-            tagsCell.innerHTML = tagsHtml;
+            if (isTrashView) {
+                const tagsHtml = item.tags.length > 0
+                    ? `<div class="note-tags">${item.tags.map(tag => `<span class="tag">${escapeHTML(tag)}</span>`).join('')}</div>`
+                    : '';
+                tagsCell.innerHTML = tagsHtml;
+            } else {
+                const tagsHtml = item.tags.length > 0
+                    ? `<div class="note-tags">
+                        ${item.tags.map(tag => `<span class="tag">${escapeHTML(tag)}</span>`).join('')}
+                        <button class="tag-edit-btn" data-username="${item.username}">${t('common_edit')}</button>
+                       </div>`
+                    : `<div class="note-tags">
+                        <span class="no-tags" style="color: #536471; font-style: italic; font-size: 12px;"> </span>
+                        <button class="tag-edit-btn" data-username="${item.username}">${t('common_add')}</button>
+                       </div>`;
+                tagsCell.innerHTML = tagsHtml;
+            }
             
             // Note content cell
             const noteCell = document.createElement('td');
@@ -233,12 +274,21 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Actions cell
             const actionsCell = document.createElement('td');
-            actionsCell.innerHTML = `
-                <div class="note-actions">
-                    <button class="edit-btn" data-key="${item.key}">${t('common_edit')}</button>
-                    <button class="delete-btn" data-key="${item.key}">${t('common_delete')}</button>
-                </div>
-            `;
+            if (isTrashView) {
+                actionsCell.innerHTML = `
+                    <div class="note-actions">
+                        <button class="restore-btn" data-key="${item.key}">${t('options_restore_btn')}</button>
+                        <button class="permanent-delete-btn" data-key="${item.key}">${t('options_permanent_delete_btn')}</button>
+                    </div>
+                `;
+            } else {
+                actionsCell.innerHTML = `
+                    <div class="note-actions">
+                        <button class="edit-btn" data-key="${item.key}">${t('common_edit')}</button>
+                        <button class="delete-btn" data-key="${item.key}">${t('common_delete')}</button>
+                    </div>
+                `;
+            }
             
             tr.appendChild(checkboxCell);
             tr.appendChild(usernameCell);
@@ -249,13 +299,21 @@ document.addEventListener('DOMContentLoaded', () => {
             notesTableBody.appendChild(tr);
         });
 
-        // Add event listeners to edit and delete buttons
+        // Add event listeners to action buttons
         document.querySelectorAll('.edit-btn').forEach(btn => {
             btn.addEventListener('click', handleEdit);
         });
-        
+
         document.querySelectorAll('.delete-btn').forEach(btn => {
             btn.addEventListener('click', handleDelete);
+        });
+
+        document.querySelectorAll('.restore-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => restoreNote(e.target.dataset.key));
+        });
+
+        document.querySelectorAll('.permanent-delete-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => permanentDeleteNote(e.target.dataset.key));
         });
         
         // Add event listeners to tag edit buttons
@@ -630,24 +688,14 @@ document.addEventListener('DOMContentLoaded', () => {
         confirmationDialog.style.display = 'flex';
     }
 
-    // Delete a note and its associated tags
+    // Move a note to trash (soft delete)
     function deleteNote(key) {
         const noteItem = allNotes.find(item => item.key === key);
-        const tagsToRemove = noteItem ? noteItem.tags : [];
-        const tagKey = noteItem ? noteItem.tagKey : null;
+        if (!noteItem) return;
+        const tagsToRemove = noteItem.tags;
 
-        const keysToRemove = [key];
-        if (tagKey) {
-            keysToRemove.push(tagKey);
-        }
-
-        storageAdapter.remove(keysToRemove, () => {
-            if (chrome.runtime.lastError) {
-                showStatusMessage(t('options_delete_failed', [chrome.runtime.lastError.message]), 'error');
-                return;
-            }
-
-            // Update global tags: decrement counts for each tag the deleted note had
+        storageAdapter.trashNote([key], () => {
+            // Update global tags: decrement counts for trashed note
             if (tagsToRemove.length > 0) {
                 tagsToRemove.forEach(tag => {
                     if (globalTags[tag]) {
@@ -660,26 +708,130 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 storageAdapter.set({ 'xNote_GlobalTags': globalTags }, () => {
                     if (chrome.runtime.lastError) {
-                        console.error('Error updating global tags after delete:', chrome.runtime.lastError);
+                        console.error('Error updating global tags after trash:', chrome.runtime.lastError);
                     }
                 });
             }
 
-            // Update in-memory notes
+            // Move from allNotes to trashedNotes
+            noteItem.trashedAt = Date.now();
             allNotes = allNotes.filter(item => item.key !== key);
             filteredNotes = filteredNotes.filter(item => item.key !== key);
+            trashedNotes.unshift(noteItem);
 
             // Update UI
             updateTable();
             updateNoteCount();
             updateTagCount();
             updatePopularTags();
+            updateTrashCount();
 
-            showStatusMessage(t('options_note_deleted'), 'success');
-
-            // Update storage usage after delete
+            showStatusMessage(t('options_note_trashed'), 'success');
             updateStorageUsage();
         });
+    }
+
+    // Restore a note from trash
+    function restoreNote(key) {
+        const noteItem = trashedNotes.find(item => item.key === key);
+        if (!noteItem) return;
+
+        storageAdapter.restoreNote([key], () => {
+            // Re-add tags to global counts
+            if (noteItem.tags.length > 0) {
+                noteItem.tags.forEach(tag => {
+                    globalTags[tag] = (globalTags[tag] || 0) + 1;
+                });
+                storageAdapter.set({ 'xNote_GlobalTags': globalTags });
+            }
+
+            // Move from trashedNotes to allNotes
+            delete noteItem.trashedAt;
+            trashedNotes = trashedNotes.filter(item => item.key !== key);
+            allNotes.push(noteItem);
+            allNotes.sort((a, b) => a.username.localeCompare(b.username));
+
+            // Update UI
+            if (isTrashView) {
+                filteredNotes = [...trashedNotes];
+            } else {
+                filterNotes(searchInput.value);
+            }
+            updateTable();
+            updateNoteCount();
+            updateTagCount();
+            updatePopularTags();
+            updateTrashCount();
+
+            showStatusMessage(t('options_note_restored'), 'success');
+            updateStorageUsage();
+        });
+    }
+
+    // Permanently delete a single note
+    function permanentDeleteNote(key) {
+        const noteItem = trashedNotes.find(item => item.key === key);
+        if (!noteItem) return;
+
+        storageAdapter.permanentDelete([key], () => {
+            trashedNotes = trashedNotes.filter(item => item.key !== key);
+            filteredNotes = filteredNotes.filter(item => item.key !== key);
+
+            updateTable();
+            updateTrashCount();
+            showStatusMessage(t('options_note_deleted'), 'success');
+            updateStorageUsage();
+        });
+    }
+
+    // Empty all trash
+    function emptyAllTrash() {
+        if (trashedNotes.length === 0) return;
+        const keys = trashedNotes.map(item => item.key);
+        storageAdapter.permanentDelete(keys, () => {
+            trashedNotes = [];
+            if (isTrashView) {
+                filteredNotes = [];
+            }
+            updateTable();
+            updateTrashCount();
+            showStatusMessage(t('options_note_deleted'), 'success');
+            updateStorageUsage();
+        });
+    }
+
+    // Update trash count display
+    function updateTrashCount() {
+        if (trashedNotes.length > 0) {
+            trashCountEl.textContent = t('options_trash_count', [String(trashedNotes.length)]);
+            trashCountEl.style.display = '';
+        } else {
+            trashCountEl.style.display = 'none';
+            // If in trash view and no more items, switch back
+            if (isTrashView) {
+                switchToNotesView();
+            }
+        }
+    }
+
+    // Switch to trash view
+    function switchToTrashView() {
+        isTrashView = true;
+        trashBanner.style.display = 'block';
+        selectionInfoBar.style.display = 'none';
+        document.querySelector('.search-container').style.display = 'none';
+        filteredNotes = [...trashedNotes];
+        updateTable();
+    }
+
+    // Switch back to notes view
+    function switchToNotesView() {
+        isTrashView = false;
+        trashBanner.style.display = 'none';
+        document.querySelector('.search-container').style.display = '';
+        filterNotes(searchInput.value);
+        updateTable();
+        updateNoteCount();
     }
 
     // Export all notes to a JSON file
@@ -715,7 +867,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Create temporary download link
             const a = document.createElement('a');
             a.href = url;
-            a.download = `X-note-export-${new Date().toISOString().slice(0,10)}.json`;
+            a.download = `XStickies-export-${new Date().toISOString().slice(0,10)}.json`;
             a.click();
             
             // Clean up
@@ -986,6 +1138,20 @@ document.addEventListener('DOMContentLoaded', () => {
     cancelDelete.addEventListener('click', () => {
         noteToDelete = null;
         confirmationDialog.style.display = 'none';
+    });
+
+    // Trash event listeners
+    trashCountEl.addEventListener('click', () => switchToTrashView());
+    backToNotesBtn.addEventListener('click', () => switchToNotesView());
+    emptyTrashBtn.addEventListener('click', () => {
+        emptyTrashDialog.style.display = 'flex';
+    });
+    confirmEmptyTrash.addEventListener('click', () => {
+        emptyAllTrash();
+        emptyTrashDialog.style.display = 'none';
+    });
+    cancelEmptyTrash.addEventListener('click', () => {
+        emptyTrashDialog.style.display = 'none';
     });
 
     // Tag system event listeners
